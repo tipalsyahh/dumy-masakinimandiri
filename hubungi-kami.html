@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami & Tim - PT Masa Kini Mandiri (Lampung Post)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --border-card: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-accent: #3b82f6;
+            --secondary-accent: #06b6d4;
+            --brand-red: #ef4444;
+            --glow-color1: rgba(37, 99, 235, 0.25);
+            --glow-color2: rgba(14, 165, 233, 0.2);
+            --glow-color3: rgba(99, 102, 241, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+        .background-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0d1322 0%, #060911 100%);
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.6;
+            animation: floatOrb 20s infinite alternate ease-in-out;
+        }
+
+        .orb-1 { width: 500px; height: 500px; background: var(--glow-color1); top: -10%; left: -10%; }
+        .orb-2 { width: 600px; height: 600px; background: var(--glow-color2); bottom: -10%; right: -10%; animation-delay: -5s; }
+        .orb-3 { width: 450px; height: 450px; background: var(--glow-color3); top: 40%; left: 30%; animation-delay: -10s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 80px) scale(1.1); }
+            100% { transform: translate(-40px, -60px) scale(0.9); }
+        }
+
+        navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-card);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #fff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--brand-red); }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .contact-hero {
+            position: relative;
+            text-align: center;
+            padding: 150px 8% 40px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 20%, #a5f3fc 60%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-card);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                        0 0 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .top-info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 70px;
+        }
+
+        .info-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-icon-box {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(6, 182, 212, 0.15));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto 60px;
+        }
+
+        /* Class untuk menengahkan Shieara A di grid 3 kolom */
+        .card-center {
+            grid-column: 2 / 3;
+        }
+
+        /* Flexbox khusus untuk tim 2 card agar persis di tengah */
+        .team-grid-2 {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            flex-wrap: wrap;
+        }
+
+        .team-grid-2 .team-card {
+            width: calc(33.333% - 17px);
+            min-width: 280px;
+        }
+
+        .team-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            background: #1e293b;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .team-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .team-socials {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .team-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border-card);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .team-socials a:hover {
+            background: var(--primary-accent);
+            color: #fff;
+            border-color: var(--primary-accent);
+            transform: translateY(-2px);
+        }
+
+        .contact-form-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            align-items: start;
+        }
+
+        .form-card h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .form-group label span {
+            color: var(--brand-red);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 18px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: #fff;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.6);
+        }
+
+        .maps-card {
+            border-radius: 24px;
+            overflow: hidden;
+            height: 100%;
+            min-height: 480px;
+            border: 1px solid var(--border-card);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .maps-card iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(20%) invert(90%) hue-rotate(180deg);
+        }
+
+        footer {
+            background: rgba(6, 9, 17, 0.9);
+            border-top: 1px solid var(--border-card);
+            padding: 60px 8% 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .footer-info p { color: var(--text-muted); max-width: 400px; font-size: 0.95rem; }
+
+        .footer-links h4 { font-size: 1.05rem; margin-bottom: 18px; color: #fff; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; font-size: 0.9rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--primary-accent); }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1024px) {
+            .top-info-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-form-section { grid-template-columns: 1fr; }
+            .maps-card { min-height: 350px; }
+        }
+
+        @media (max-width: 868px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(11, 15, 25, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                padding: 40px 20px;
+                transition: 0.4s ease-in-out;
+                border-left: 1px solid var(--border-card);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            }
+            .nav-links.active { right: 0; }
+
+            .contact-hero h1 { font-size: 2.3rem; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .card-center { grid-column: auto; }
+            .team-grid-2 .team-card { width: 100%; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 580px) {
+            .top-info-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .contact-hero h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-gradient">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <navbar>
+        <a href="index.html" class="logo">
+            PT MASA KINI MANDIRI <span>.</span>
+        </a>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars" id="menuIcon"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
+            <li><a href="video.html">Video</a></li>
+            <li><a href="mitra.html">mitra</a></li>
+            <li><a href="hubungi-kami.html" class="active">Hubungi</a></li>
+            <li><a href="media.html">Media Kami</a></li>
+        </ul>
+    </navbar>
+
+    <section class="contact-hero reveal" id="kontak">
+        <div class="hero-badge">
+            <i class="fa-solid fa-headset"></i> Layanan Informasi & Kontak
+        </div>
+        <h1>Hubungi Kami</h1>
+        <p>Silakan hubungi tim profesional kami untuk kebutuhan iklan, kerja sama media, sirkulasi, atau pertanyaan umum terkait PT Masa Kini Mandiri (Lampung Post).</p>
+    </section>
+
+    <div style="padding: 0 8%;">
+        <div class="top-info-grid reveal">
+            <div class="glass-card info-card">
+                <div class="info-icon-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h3>Lokasi</h3>
+                <p>Jalan Soekarno – Hatta No. 108<br>Rajabasa, Bandar Lampung,<br>Lampung 35142</p>
+            </div>
+
+            <div class="glass-card info-card">
+                <div class="info-icon-box">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <h3>E - Mail</h3>
+                <p style="margin-top: 10px;">
+                    <a href="mailto:marcomm@lampost.co" style="color: #38bdf8; text-decoration: none; font-weight: 600;">marcomm@lampost.co</a>
+                </p>
+            </div>
+
+            <div class="glass-card info-card">
+                <div class="info-icon-box">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                <h3>Telepon</h3>
+                <p>
+                    0721 783693<br>
+                    0721 773888
+                </p>
+            </div>
+
+            <div class="glass-card info-card">
+                <div class="info-icon-box">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <h3>Jam Kerja</h3>
+                <p style="margin-top: 10px;">
+                    <b>Senin – Jumat :</b><br>
+                    08:30 – 16:00 WIB
+                </p>
+            </div>
+        </div>
+
+        <div class="section-header reveal">
+            <h2>Meet The Team</h2>
+            <p style="color: #60a5fa; font-weight: 700; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">Sales & Marketing</p>
+        </div>
+
+        <div class="team-grid reveal">
+            <div class="glass-card team-card">
+                <div class="team-avatar">
+                    <img src="asset/ae/bucici.webp" alt="Sri Agustina" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Sri+A'">
+                </div>
+                <div class="team-name">Sri Agustina</div>
+                <div class="team-role">Kadept Revenue</div>
+                <div class="team-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="glass-card team-card">
+                <div class="team-avatar">
+                    <img src="asset/ae/dad.webp" alt="Dat. S. Ginting" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Ginting'">
+                </div>
+                <div class="team-name">Dat. S. Ginting</div>
+                <div class="team-role">Manajer Iklan</div>
+                <div class="team-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="glass-card team-card">
+                <div class="team-avatar">
+                    <img src="asset/ae/aji.webp" alt="Setiaji B. Pamungkas" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Setiaji'">
+                </div>
+                <div class="team-name">Setiaji B. Pamungkas</div>
+                <div class="team-role">Manajer Iklan Digital</div>
+                <div class="team-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="glass-card team-card">
+                <div class="team-avatar">
+                    <img src="asset/ae/merry.webp" alt="Merry Destaria" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Merry'">
+                </div>
+                <div class="team-name">Merry Destaria</div>
+                <div class="team-role">Account Executive</div>
+                <div class="team-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="glass-card team-card">
+                <div class="team-avatar">
+                    <img src="asset/ae/repi.jpeg" alt="Repi Kusumaningrum" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Repi'">
+                </div>
+                <div class="team-name">Repi Kusumaningrum</div>
+                <div class="team-role">Account Executive</div>
+                <div class="team-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="glass-card team-card">
+                <div class="team-avatar">
+                    <img src="asset/ae/anggun.webp" alt="Anggun" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Anggun'">
+                </div>
+                <div class="team-name">Anggun</div>
+                <div class="team-role">Account Executive</div>
+                <div class="team-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Shieara A dipindahkan tepat ke tengah baris ke-3 -->
+            <div class="glass-card team-card card-center">
+                <div class="team-avatar">
+                    <img src="asset/ae/buser.webp" alt="Shieara A" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Shieara'">
+                </div>
+                <div class="team-name">Shieara A</div>
+                <div class="team-role">Account Executive</div>
+                <div class="team-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header reveal">
+            <h2>Aktivasi & Sirkulasi</h2>
+            <p>Tim yang bertanggung jawab atas distribusi, sirkulasi media cetak, serta program aktivasi event.</p>
+        </div>
+
+        <!-- Layout 2 Card Persis di Tengah -->
+        <div class="team-grid-2 reveal">
+            <div class="glass-card team-card">
+                <div class="team-avatar">
+                    <img src="asset/ae/wiji.webp" alt="Wiji Sukamto" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Wiji'">
+                </div>
+                <div class="team-name">Wiji Sukamto</div>
+                <div class="team-role">Manajer Aktivasi</div>
+                <div class="team-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="glass-card team-card">
+                <div class="team-avatar">
+                    <img src="asset/ae/sodiq.webp" alt="Ja'far Sodiq" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Jafar'">
+                </div>
+                <div class="team-name">Ja'far Sodiq</div>
+                <div class="team-role">Supervisor Sirkulasi</div>
+                <div class="team-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-section reveal">
+            <!-- Form Kirim ke Email -->
+            <div class="glass-card form-card">
+                <h3>Kirim Pesan</h3>
+                <form id="contactForm" onsubmit="sendToEmail(event)">
+                    <div class="form-group">
+                        <label>Nama <span>*</span></label>
+                        <input type="text" id="formNama" class="form-control" placeholder="Masukkan nama lengkap Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat E-Mail Anda <span>*</span></label>
+                        <input type="email" id="formEmail" class="form-control" placeholder="contoh@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subjek <span>*</span></label>
+                        <input type="text" id="formSubjek" class="form-control" placeholder="Topik atau judul pesan" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Pesan anda <span>*</span></label>
+                        <textarea id="formPesan" class="form-control" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fa-solid fa-envelope-open-text"></i> Send to Email
+                    </button>
+                </form>
+            </div>
+
+            <div class="maps-card">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.391207902409!2d105.231922314765!3d-5.357121696113941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40cabb29a43585%3A0x6b749626354bbf89!2sLampung%20Post!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>PT Masa Kini Mandiri</h3>
+                <p>Bagian dari Media Group Network. Solusi media terpadu dan terpercaya di Lampung.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Kontak Kami</h4>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> marcomm@lampost.co</li>
+                    <li><i class="fa-solid fa-phone"></i> T. 0721 783693 / F. 0721 773888</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html#beranda">Beranda</a></li>
+                    <li><a href="tentang.html">Tentang Kami</a></li>
+                    <li><a href="index.html#ekosistem">Ekosistem</a></li>
+                    <li><a href="index.html#program">Program</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; COPYRIGHT 2026 PT MASA KINI MANDIRI. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script>
+        function sendToEmail(e) {
+            e.preventDefault();
+            const nama = document.getElementById('formNama').value;
+            const email = document.getElementById('formEmail').value;
+            const subjek = document.getElementById('formSubjek').value;
+            const pesan = document.getElementById('formPesan').value;
+
+            const targetEmail = 'marcomm@lampost.co';
+            const emailSubject = encodeURIComponent(`[Website Inquiry] ${subjek}`);
+            const emailBody = encodeURIComponent(
+                `Halo Tim Lampung Post,\n\nSaya ingin menyampaikan pesan melalui formulir kontak website:\n\n` +
+                `Nama Pengirim: ${nama}\n` +
+                `Email Pengirim: ${email}\n` +
+                `Subjek: ${subjek}\n\n` +
+                `Isi Pesan:\n${pesan}\n\n` +
+                `------------------------------------\n` +
+                `Dikirim dari Formulir Kontak PT Masa Kini Mandiri`
+            );
+
+            window.location.href = `mailto:${targetEmail}?subject=${emailSubject}&body=${emailBody}`;
+        }
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                menuIcon.className = 'fa-solid fa-times';
+            } else {
+                menuIcon.className = 'fa-solid fa-bars';
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                if (menuIcon) {
+                    menuIcon.className = 'fa-solid fa-bars';
+                }
+            });
+        });
+
+        const observerOptions = { threshold: 0.12 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                if (window.innerWidth > 768) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    card.style.transform = `translateY(-8px) rotateX(${-y / 35}deg) rotateY(${x / 35}deg)`;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `translateY(0) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaringan Media - PT Masa Kini Mandiri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #080c14;
+            --surface-color: #0f172a;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-red: #ef4444;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Interactive Mapping Canvas Background */
+        .spotlight-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.08), transparent 80%),
+                radial-gradient(600px circle at calc(var(--mouse-x, 50%) - 200px) calc(var(--mouse-y, 50%) + 100px), rgba(239, 68, 68, 0.05), transparent 70%);
+        }
+
+        .grid-pattern {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(8, 12, 20, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #fff;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo span { color: var(--accent-red); }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.4rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .header-wrapper {
+            position: relative;
+            z-index: 1;
+            padding: 140px 8% 40px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .header-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: var(--accent-blue);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .header-wrapper h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: #fff;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .header-wrapper p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 680px;
+            line-height: 1.6;
+        }
+
+        /* Simetris & Ratakan Ukuran Layout Grid (2x2) */
+        .media-bento-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
+            margin: 0 auto 100px;
+            padding: 0 8%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .bento-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 380px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(12px);
+            cursor: pointer;
+        }
+
+        .bento-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .bento-item:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.1);
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+        }
+
+        .brand-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .bento-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .bento-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .bento-meta-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .stat-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .action-arrow-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .bento-item:hover .action-arrow-btn {
+            background: var(--accent-blue);
+            color: #000;
+            border-color: var(--accent-blue);
+            transform: rotate(-45deg);
+        }
+
+        /* Modal Box View */
+        .human-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 12, 20, 0.92);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 24px;
+        }
+
+        .human-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: #0f172a;
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            width: 100%;
+            max-width: 680px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--accent-red);
+        }
+
+        .modal-h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 14px;
+            margin-top: 10px;
+        }
+
+        .modal-body {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .modal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            color: #000;
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #060911;
+            border-top: 1px solid var(--card-border);
+            padding: 50px 8% 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+            max-width: 1280px;
+            margin: 0 auto 30px;
+        }
+
+        .footer-info h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; margin-bottom: 12px; }
+        .footer-info p { color: var(--text-secondary); font-size: 0.9rem; max-width: 400px; }
+
+        .footer-links h4 { font-size: 0.95rem; margin-bottom: 14px; color: #fff; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 8px; font-size: 0.88rem; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent-blue); }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .media-bento-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 280px;
+                height: 100vh;
+                background: #0f172a;
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                padding: 30px 20px;
+                transition: 0.4s ease;
+                border-left: 1px solid var(--card-border);
+            }
+            .nav-links.active { right: 0; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .bento-item { padding: 24px; min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="spotlight-canvas" id="spotlight"></div>
+    <div class="grid-pattern"></div>
+
+    <navbar>
+        <a href="index.html" class="logo">
+            PT MASA KINI MANDIRI <span>.</span>
+        </a>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars" id="menuIcon"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
+            <li><a href="video.html">Video</a></li>
+            <li><a href="mitra.html">Mitra</a></li>
+            <li><a href="hubungi-kami.html">Hubungi</a></li>
+            <li><a href="media.html" class="active">Media Kami</a></li>
+        </ul>
+    </navbar>
+
+    <header class="header-wrapper">
+        <div class="header-tag">
+            <i class="fa-solid fa-network-wired"></i> Ekosistem Berita Terpadu
+        </div>
+        <h1>Unit Media & Platform Publikasi</h1>
+        <p>Grup media terpercaya di Provinsi Lampung yang menyajikan beragam saluran informasi dari surat kabar harian, portal berita digital, konten multimedia interaktif, hingga siaran radio terpopuler.</p>
+    </header>
+
+    <!-- Bento Grid Simetris Rata Ukuran -->
+    <main class="media-bento-container">
+
+        <!-- Card 1: Harian Umum Lampung Post -->
+        <article class="bento-item" onclick="openModal('lampungpost')">
+            <div>
+                <div class="brand-header">
+                    <span class="brand-badge">Surat Kabar & Digital</span>
+                </div>
+                <h2 class="bento-title">Harian Umum Lampung Post</h2>
+                <p class="bento-description">Harian umum pertama dan tertua di Provinsi Lampung yang terbit sejak 10 Agustus 1974. Konsisten menghadirkan jurnalisme teruji dan tepercaya dalam bentuk surat kabar cetak, e-paper digital, serta pusat penerbitan publikasi.</p>
+            </div>
+            <div class="bento-meta-bar">
+                <div class="stat-group">
+                    <div class="stat-item">
+                        <span class="stat-value">1974</span>
+                        <span class="stat-label">Tahun Berdiri</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">Cetak & E-Paper</span>
+                        <span class="stat-label">Format Media</span>
+                    </div>
+                </div>
+                <div class="action-arrow-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+        </article>
+
+        <!-- Card 2: Lampost.co -->
+        <article class="bento-item" onclick="openModal('lampostco')">
+            <div>
+                <div class="brand-header">
+                    <span class="brand-badge">Portal Berita</span>
+                </div>
+                <h2 class="bento-title">Lampost.co</h2>
+                <p class="bento-description">Portal berita digital online yang diperbarui secara realtime 24 jam. Menyajikan lebih dari 100–150 berita terverifikasi setiap hari untuk pembaca di Lampung maupun manca negara.</p>
+            </div>
+            <div class="bento-meta-bar">
+                <div class="stat-group">
+                    <div class="stat-item">
+                        <span class="stat-value">150+</span>
+                        <span class="stat-label">Berita / Hari</span>
+                    </div>
+                </div>
+                <div class="action-arrow-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+        </article>
+
+        <!-- Card 3: Suma.id -->
+        <article class="bento-item" onclick="openModal('sumaid')">
+            <div>
+                <div class="brand-header">
+                    <span class="brand-badge">Multimedia</span>
+                </div>
+                <h2 class="bento-title">Suma.id Multimedia Network</h2>
+                <p class="bento-description">Jejaring platform media multimedia interaktif yang memadukan elemen teks berita, foto jurnalistik, siaran podcast audio, dan video grafis dalam satu ruang baca yang dinamis.</p>
+            </div>
+            <div class="bento-meta-bar">
+                <div class="stat-group">
+                    <div class="stat-item">
+                        <span class="stat-value">Multi-platform</span>
+                        <span class="stat-label">Audio & Visual</span>
+                    </div>
+                </div>
+                <div class="action-arrow-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+        </article>
+
+        <!-- Card 4: Sai Radio 100 FM -->
+        <article class="bento-item" onclick="openModal('sairadio')">
+            <div>
+                <div class="brand-header">
+                    <span class="brand-badge">Radio Broadcast</span>
+                </div>
+                <h2 class="bento-title">100 FM Sai Radio</h2>
+                <p class="bento-description">Radio siaran anak muda dan profesional kreatif di Bandar Lampung. Menyajikan kombinasi musik pilihan, kabar aktual, serta ruang talkshow publik yang interaktif.</p>
+            </div>
+            <div class="bento-meta-bar">
+                <div class="stat-group">
+                    <div class="stat-item">
+                        <span class="stat-value">100.0 FM</span>
+                        <span class="stat-label">Frekuensi Siaran</span>
+                    </div>
+                </div>
+                <div class="action-arrow-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Modal Detail View -->
+    <div class="human-modal" id="humanModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="modal-h2" id="mTitle">Judul Media</h2>
+            <div class="modal-body" id="mDesc">Deskripsi ringkas.</div>
+            <a href="#" target="_blank" id="mLink" class="modal-btn">
+                Kunjungi Situs <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>PT Masa Kini Mandiri</h3>
+                <p>Bagian dari Media Group Network. Solusi media terpadu dan terpercaya di Lampung.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Kontak Kami</h4>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> marcomm@lampost.co</li>
+                    <li><i class="fa-solid fa-phone"></i> T. 0721 783693 / F. 0721 773888</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="tentang.html">Tentang Kami</a></li>
+                    <li><a href="media.html">Media Kami</a></li>
+                    <li><a href="video.html">Video</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; COPYRIGHT 2026 PT MASA KINI MANDIRI. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script>
+        const spotlight = document.getElementById('spotlight');
+        window.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            spotlight.style.setProperty('--mouse-x', `${x}px`);
+            spotlight.style.setProperty('--mouse-y', `${y}px`);
+        });
+
+        const mediaInfo = {
+            lampungpost: {
+                title: "Harian Umum Lampung Post",
+                desc: "Lampung Post berdiri sejak 10 Agustus 1974 dan telah menjadi pilar informasi tepercaya di Provinsi Lampung. Selain koran cetak harian, Lampung Post menyediakan platform edisi e-paper digital, buku penerbitan, hingga event organizer berskala nasional.",
+                url: "https://lampost.co/epaper"
+            },
+            lampostco: {
+                title: "Portal Berita Lampost.co",
+                desc: "Lampost.co adalah portal berita online terdepan di Lampung yang diperbarui secara realtime. Menyajikan berita politik, hukum, ekonomi, sosial budaya, dan berita daerah teruji bagi masyarakat Lampung di Indonesia maupun luar negeri.",
+                url: "https://lampost.co"
+            },
+            sumaid: {
+                title: "Suma.id Multimedia Network",
+                desc: "Suma.id memadukan teks berita, dokumentasi foto, audio podcast, dan tayangan videografis interaktif untuk memberikan pengalaman konsumsi berita yang modern bagi pembaca.",
+                url: "https://suma.id"
+            },
+            sairadio: {
+                title: "100 FM Sai Radio",
+                desc: "100 FM Sai Radio menyajikan siaran musik hits, diskusi publik, dan wadah informasi interaktif bagi komunitas kreatif serta pelaku usaha di Bandar Lampung.",
+                url: "https://sai100fm.id"
+            }
+        };
+
+        function openModal(key) {
+            const data = mediaInfo[key];
+            if (!data) return;
+
+            document.getElementById('mTitle').textContent = data.title;
+            document.getElementById('mDesc').textContent = data.desc;
+            document.getElementById('mLink').href = data.url;
+
+            const modal = document.getElementById('humanModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('humanModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('humanModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('humanModal')) {
+                closeModal();
+            }
+        });
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const menuIcon = document.getElementById('menuIcon');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    menuIcon.className = 'fa-solid fa-times';
+                } else {
+                    menuIcon.className = 'fa-solid fa-bars';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

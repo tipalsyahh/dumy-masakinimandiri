@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Masa Kini Mandiri - Lampung Post</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" sizes="192x192" href="https://lampost.co/otomatisasi-ai/img/icon.png" type="image/png">
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --border-card: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-accent: #3b82f6;
+            --secondary-accent: #06b6d4;
+            --brand-red: #ef4444;
+            --glow-color1: rgba(37, 99, 235, 0.25);
+            --glow-color2: rgba(14, 165, 233, 0.2);
+            --glow-color3: rgba(99, 102, 241, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+        .background-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0d1322 0%, #060911 100%);
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.6;
+            animation: floatOrb 20s infinite alternate ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--glow-color1);
+            top: -10%;
+            left: -10%;
+        }
+
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: var(--glow-color2);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 450px;
+            height: 450px;
+            background: var(--glow-color3);
+            top: 40%;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 80px) scale(1.1); }
+            100% { transform: translate(-40px, -60px) scale(0.9); }
+        }
+
+        navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-card);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #fff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--brand-red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        section {
+            padding: 120px 8% 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                        0 0 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 140px 8% 100px;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: linear-gradient(
+                180deg, 
+                rgba(11, 15, 25, 0.4) 0%, 
+                rgba(11, 15, 25, 0.7) 70%, 
+                #0b0f19 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #ffffff 30%, #a5f3fc 70%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 40px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image-box {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-card);
+        }
+
+        .about-image-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(0.9);
+            transition: 0.5s;
+        }
+
+        .about-image-box:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .visi-box {
+            background: rgba(59, 130, 246, 0.08);
+            border-left: 4px solid var(--primary-accent);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin-top: 25px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .program-img-box {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .program-img-box img {
+            max-width: 140px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .keunggulan-container {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .keunggulan-left-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .keunggulan-left-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        .keunggulan-image-box {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-card);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .keunggulan-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .keunggulan-image-box:hover img {
+            transform: scale(1.04);
+        }
+
+        .keunggulan-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .gallery-slider {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 420px;
+            transform-style: preserve-3d;
+        }
+
+        .gallery-slide {
+            position: absolute;
+            width: 100%;
+            max-width: 750px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-card);
+            border-radius: 24px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 25px;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8) translateZ(-200px);
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateZ(0);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.2);
+            z-index: 10;
+        }
+
+        .gallery-slide.prev {
+            opacity: 0.4;
+            visibility: visible;
+            transform: translateX(-40%) scale(0.85) translateZ(-100px);
+            z-index: 5;
+            cursor: pointer;
+        }
+
+        .gallery-slide.next {
+            opacity: 0.4;
+            visibility: visible;
+            transform: translateX(40%) scale(0.85) translateZ(-100px);
+            z-index: 5;
+            cursor: pointer;
+        }
+
+        .gallery-img-box {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            height: 240px;
+        }
+
+        .gallery-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-slide:hover .gallery-img-box img {
+            transform: scale(1.08);
+        }
+
+        .gallery-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(234, 179, 8, 0.1));
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            color: #fbbf24;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .gallery-info h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .gallery-info p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .gallery-org {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .gallery-org i {
+            color: var(--primary-accent);
+        }
+
+        .gallery-controls {
+            position: relative;
+            z-index: 20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .gallery-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-card);
+            color: #fff;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-btn:hover {
+            background: var(--primary-accent);
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            transform: scale(1.08);
+        }
+
+        .gallery-dots {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-dot.active {
+            width: 24px;
+            height: 8px;
+            border-radius: 10px;
+            background: var(--primary-accent);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+        }
+
+        .clients-wrapper {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--border-card);
+            text-align: center;
+        }
+
+        footer {
+            background: rgba(6, 9, 17, 0.9);
+            border-top: 1px solid var(--border-card);
+            padding: 60px 8% 30px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            max-width: 400px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 1024px) {
+            navbar {
+                padding: 15px 5%;
+            }
+            section {
+                padding: 100px 5% 50px;
+            }
+            .keunggulan-container {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 868px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(11, 15, 25, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                padding: 40px 20px;
+                transition: 0.4s ease-in-out;
+                border-left: 1px solid var(--border-card);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .keunggulan-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            /* Responsive Gallery Slider */
+            .gallery-container {
+                perspective: none;
+            }
+
+            .gallery-slider {
+                min-height: auto;
+                position: relative;
+            }
+
+            .gallery-slide {
+                position: relative;
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+                border-radius: 20px;
+                transform: none !important;
+                display: none;
+                box-shadow: none;
+            }
+
+            .gallery-slide.active {
+                display: grid;
+                transform: none !important;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .gallery-slide.prev, .gallery-slide.next { 
+                display: none; 
+            }
+
+            .gallery-img-box {
+                height: 180px;
+            }
+
+            .gallery-info h3 {
+                font-size: 1.2rem;
+            }
+
+            .gallery-info p {
+                font-size: 0.88rem;
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .glass-card {
+                padding: 20px;
+            }
+            .clients-wrapper {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-gradient">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <navbar>
+        <div class="logo">
+            PT MASA KINI MANDIRI <span>.</span>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Beranda</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
+            <li><a href="video.html">Video</a></li>
+            <li><a href="mitra.html">mitra</a></li>
+            <li><a href="hubungi-kami.html">Hubungi</a></li>
+            <li><a href="media.html">Media Kami</a></li>
+        </ul>
+    </navbar>
+
+    <section id="beranda" class="hero reveal">
+        <video autoplay loop muted playsinline class="hero-video-bg">
+            <source src="asset/vidio.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Media Multiplatform Terdepan</div>
+            <h1>PT. Masa Kini Mandiri</h1>
+            <p>Bagian dari Media Group Network. Kami bertransformasi dari koran cetak menjadi institusi media multiplatform yang menjadi rujukan utama informasi di Sang Bumi Ruwa Jurai sejak 10 Agustus 1974.</p>
+        </div>
+    </section>
+
+    <section id="tentang">
+        <div class="about-grid">
+            <div class="about-image-box reveal">
+                <img src="asset/kantor.webp" alt="Kantor Lampung Post">
+            </div>
+            <div class="about-content reveal">
+                <div class="section-header" style="text-align: left; margin-bottom: 20px;">
+                    <h2>Tentang Kami</h2>
+                </div>
+                <h3>Sejarah & Transformasi</h3>
+                <p>Berdiri sejak 10 Agustus 1974, Lampung Post memiliki rekam jejak panjang dalam menyajikan berita berkualitas. Kini, kami berkembang menjadi <b>One Stop Media Solution</b> yang mencakup portal berita online, koran digital, video streaming, radio, hingga event organizer.</p>
+                <div class="visi-box">
+                    <h4 style="color: #fff; margin-bottom: 5px;">Visi Kami</h4>
+                    <p style="margin: 0; font-size: 0.95rem;">Menjadi "Jendela Informasi Lampung" dan referensi utama masyarakat dengan menyajikan berita yang cepat, jujur, akurat, dan bermutu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ekosistem">
+        <div class="section-header reveal">
+            <h2>Ekosistem Bisnis</h2>
+            <p>Layanan terintegrasi kami untuk menjangkau pemirsa dari berbagai segmen dan platform.</p>
+        </div>
+        <div class="grid-3">
+            <div class="glass-card reveal">
+                <div class="icon-box"><i class="fa-solid fa-globe"></i></div>
+                <div class="card-title">Portal Berita Online</div>
+                <div class="card-desc"><b>LAMPOST.CO</b> - Portal berita nomor satu di Provinsi Lampung menyajikan berita terkini 24/7.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="icon-box"><i class="fa-solid fa-tower-cell"></i></div>
+                <div class="card-title">Broadcast</div>
+                <div class="card-desc">Lampung Post Update (YouTube Channel) menyajikan berita visual dan tayangan program informatif.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="icon-box"><i class="fa-solid fa-newspaper"></i></div>
+                <div class="card-title">Digital (E-Paper)</div>
+                <div class="card-desc">Koran digital Lampung Post teruji & tepercaya yang praktis diakses dari mana saja.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="icon-box"><i class="fa-solid fa-radio"></i></div>
+                <div class="card-title">Radio SAI 100FM</div>
+                <div class="card-desc">Mengusung konsep anak muda kreatif, energik, dan musik pop/jazz pilihan.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
+                <div class="card-title">Publishing</div>
+                <div class="card-desc">Jasa cetak penerbitan koran, tabloid, buku melalui layanan One Stop Publishing.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="icon-box"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="card-title">Event Organizer</div>
+                <div class="card-desc">Penyelenggara acara profesional untuk instansi pemerintah, BUMN, swasta, dan komunitas.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="program">
+        <div class="section-header reveal">
+            <h2>Program Unggulan</h2>
+            <p>Program konten eksklusif dan interaktif yang menginspirasi serta menyajikan informasi mendalam.</p>
+        </div>
+        <div class="grid-3">
+            <div class="glass-card reveal">
+                <div class="card-title" style="color:#60a5fa;">Bung Is Menyapa</div>
+                <div class="program-img-box">
+                    <img src="logo/bungis.webp" alt="Bung Is Menyapa">
+                </div>
+                <div class="card-desc">Cerita di balik kesuksesan tokoh & kontribusi membangun Lampung bersama Host Iskandar Zulkarnain.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="card-title" style="color:#f43f5e;">Dialog Spesial</div>
+                <div class="program-img-box">
+                    <img src="logo/dialog.webp" alt="Dialog Spesial">
+                </div>
+                <div class="card-desc">Talkshow mendalam bersama narasumber pilihan yang menginspirasi dipandu Abdul Gofur.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="card-title" style="color:#38bdf8;">Economic Corner</div>
+                <div class="card-desc">Informasi ekonomi dan bisnis terkini dengan pendekatan jurnalistik yang mendalam.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="card-title" style="color:#f59e0b;">Berburu Cuan</div>
+                <div class="program-img-box">
+                    <img src="logo/berburucuan.webp" alt="Berburu Cuan">
+                </div>
+                <div class="card-desc">Podcast membahas kisah sukses pengusaha UMKM & industri untuk menginspirasi milenial.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="card-title" style="color:#ec4899;">Curhat Mak</div>
+                <div class="card-desc">Bincang santai penuh inspirasi dari sudut pandang perempuan dan sosok ibu.</div>
+            </div>
+            <div class="glass-card reveal">
+                <div class="card-title" style="color:#10b981;">Ayo Sehat</div>
+                <center>
+                    <div class="program-img-box">
+                        <img src="logo/ayosehat.jpg" alt="Ayo Sehat">
+                    </div>
+                <div class="card-desc">Podcast kesehatan menghadirkan tips dan wawasan langsung bersama para pakar di bidangnya.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="keunggulan">
+        <div class="keunggulan-container">
+            <div class="keunggulan-left reveal">
+                <div class="keunggulan-left-header">
+                    <h2>Keunggulan Kami</h2>
+                    <p>Mengapa bermitra dengan Lampung Post?</p>
+                </div>
+                <div class="keunggulan-image-box">
+                    <img src="asset/jurnalis.webp" alt="Tim Lampung Post">
+                </div>
+            </div>
+            <div class="keunggulan-grid">
+                <div class="glass-card reveal">
+                    <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="card-title">Kredibilitas Jurnalistik</div>
+                    <div class="card-desc">Kami memegang teguh etika jurnalistik yang ketat, menjadikan kami penangkal berita bohong (hoax) yang efektif di Lampung.</div>
+                </div>
+                <div class="glass-card reveal">
+                    <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+                    <div class="card-title">Konvergensi Media (One Stop Solution)</div>
+                    <div class="card-desc">Keuntungan "Satu Pintu" bagi pengiklan. Promosi Anda dapat muncul serentak di koran, portal berita, radio, dan media sosial.</div>
+                </div>
+                <div class="glass-card reveal">
+                    <div class="icon-box"><i class="fa-solid fa-bullseye"></i></div>
+                    <div class="card-title">Jangkauan Luas & Tepat Sasaran</div>
+                    <div class="card-desc">Distribusi cetak mencakup seluruh kabupaten/kota di Lampung, sementara platform digital menjangkau pembaca nasional hingga diaspora di luar negeri.</div>
+                </div>
+                <div class="glass-card reveal">
+                    <div class="icon-box"><i class="fa-solid fa-handshake"></i></div>
+                    <div class="card-title">Mitra Strategis Tepercaya</div>
+                    <div class="card-desc">Dipercaya oleh berbagai instansi pemerintah dan swasta untuk publikasi kebijakan, lelang, dan branding.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="penghargaan">
+        <div class="section-header reveal">
+            <h2>Penghargaan & Sertifikasi</h2>
+            <p>Bukti komitmen dan dedikasi kami dalam menyajikan jurnalisme berkualitas tinggi serta standar layanan media nasional.</p>
+        </div>
+        
+        <div class="gallery-container reveal">
+            <div class="gallery-slider" id="gallerySlider">
+                
+                <div class="gallery-slide">
+                    <div class="gallery-img-box">
+                        <img src="asset/bayangkara.webp" alt="Sertifikat Dewan Pers">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-badge"><i class="fa-solid fa-award"></i> Verified Media</div>
+                        <h3>Lampung Post Terima Penghargaan di Hari Bhayangkara ke-79 Polres Way Kanan.</h3>
+                        <p>Lampung Post terima penghargaan dalam peringatan Hari Bhayangkara ke-79, dari Mapolres Way Kanan.</p>
+                        <div class="gallery-org"><i class="fa-solid fa-circle-check"></i> Mapolres Way Kanan</div>
+                    </div>
+                </div>
+
+                <div class="gallery-slide">
+                    <div class="gallery-img-box">
+                        <img src="asset/lpef2.webp" alt="IPMA Award">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-badge"><i class="fa-solid fa-trophy"></i> LAMPUNG POST EXECUTIVE FORUM</div>
+                        <h3>Komisi V DPRD Lampung Dorong Pembenahan Mutu Pendidikan dan Kesejahteraan Guru Honorer</h3>
+                        <p>Ketua Komisi V DPRD Lampung Yanuar Irawan menyoroti ironi kesejahteraan guru honorer dan pentingnya peran PTS dalam mendongkrak APK pendidikan tinggi.</p>
+                        <div class="gallery-org"><i class="fa-solid fa-circle-check"></i> Serikat Perusahaan Pers (SPS)</div>
+                    </div>
+                </div>
+
+                <div class="gallery-slide">
+                    <div class="gallery-img-box">
+                        <img src="asset/lpef1.webp" alt="Penghargaan Kemitraan">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-badge"><i class="fa-solid fa-star"></i> LAMPUNG POST EXECUTIVE FORUM</div>
+                        <h3>Pemprov Lampung Terima Penghargaan Pelopor Swasembada Pangan dan Transformasi Ekonomi Nasional</h3>
+                        <p>Gubernur Lampung, Rahmad Mirzani Djausal menerima penghargaan Lampung Post Award "Asta Cita Bersama Lampung Maju".</p>
+                        <div class="gallery-org"><i class="fa-solid fa-circle-check"></i> Pemerintah Daerah & Instansi Terkait</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="gallery-controls">
+                <button class="gallery-btn" id="prevBtn"><i class="fa-solid fa-arrow-left"></i></button>
+                <div class="gallery-dots" id="galleryDots"></div>
+                <button class="gallery-btn" id="nextBtn"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="mitra">
+        <div class="section-header reveal">
+            <h2>Klien & Mitra Kami</h2>
+            <p>Bangga dipercaya oleh berbagai mitra strategis, mulai dari Pemerintah Daerah, BUMN, Universitas, hingga Swasta Nasional.</p>
+        </div>
+        <div class="clients-wrapper reveal">
+            <img src="asset/mitra.png" alt="Mitra Lampung Post" style="max-width: 100%; height: auto;">
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>PT Masa Kini Mandiri</h3>
+                <p>Bagian dari Media Group Network. Solusi media terpadu dan terpercaya di Lampung.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Kontak Kami</h4>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> marcomm@lampost.co</li>
+                    <li><i class="fa-solid fa-phone"></i> T. 0721 783693 / F. 0721 773888</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Jalan Soekarno - Hatta No. 108 Hajimena, Rajabasa, Lampung 35142</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#ekosistem">Ekosistem</a></li>
+                    <li><a href="#program">Program</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; COPYRIGHT 2026 PT MASA KINI MANDIRI. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Navigation Bar Mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close navbar menu when clicking link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Scroll Observer for Animations
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Glass Card Hover Effect (Mousemove)
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                if (window.innerWidth > 768) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    card.style.transform = `translateY(-8px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg)`;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `translateY(0) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+
+        // Slider Gallery Script
+        const slides = document.querySelectorAll('.gallery-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('galleryDots');
+        let currentSlide = 0;
+        let autoSlideTimer;
+
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('div');
+            dot.classList.add('gallery-dot');
+            if (idx === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(idx));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.gallery-dot');
+
+        function updateSlider() {
+            slides.forEach((slide, idx) => {
+                slide.classList.remove('active', 'prev', 'next');
+                
+                if (idx === currentSlide) {
+                    slide.classList.add('active');
+                } else if (idx === (currentSlide - 1 + slides.length) % slides.length) {
+                    slide.classList.add('prev');
+                } else if (idx === (currentSlide + 1) % slides.length) {
+                    slide.classList.add('next');
+                }
+            });
+
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentSlide);
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetAutoSlide();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoSlide();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoSlide();
+        });
+
+        slides.forEach((slide) => {
+            slide.addEventListener('click', () => {
+                if (slide.classList.contains('prev')) {
+                    prevSlide();
+                    resetAutoSlide();
+                } else if (slide.classList.contains('next')) {
+                    nextSlide();
+                    resetAutoSlide();
+                }
+            });
+        });
+
+        function startAutoSlide() {
+            autoSlideTimer = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideTimer);
+            startAutoSlide();
+        }
+
+        updateSlider();
+        startAutoSlide();
+    </script>
+</body>
+</html>

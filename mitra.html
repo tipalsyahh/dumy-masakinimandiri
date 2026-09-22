@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klien & Mitra Strategis - PT Masa Kini Mandiri (Lampung Post)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" sizes="192x192" href="https://lampost.co/otomatisasi-ai/img/icon.png" type="image/png">
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --border-card: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-accent: #3b82f6;
+            --secondary-accent: #06b6d4;
+            --brand-red: #ef4444;
+            --glow-color1: rgba(37, 99, 235, 0.25);
+            --glow-color2: rgba(14, 165, 233, 0.2);
+            --glow-color3: rgba(99, 102, 241, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+        /* Ambient Animated Orbs Background */
+        .background-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0d1322 0%, #060911 100%);
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.6;
+            animation: floatOrb 20s infinite alternate ease-in-out;
+        }
+
+        .orb-1 { width: 500px; height: 500px; background: var(--glow-color1); top: -10%; left: -10%; }
+        .orb-2 { width: 600px; height: 600px; background: var(--glow-color2); bottom: -10%; right: -10%; animation-delay: -5s; }
+        .orb-3 { width: 450px; height: 450px; background: var(--glow-color3); top: 40%; left: 30%; animation-delay: -10s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 80px) scale(1.1); }
+            100% { transform: translate(-40px, -60px) scale(0.9); }
+        }
+
+        /* Navbar */
+        navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-card);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #fff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--brand-red); }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Hero Header Section */
+        .mitra-hero {
+            position: relative;
+            text-align: center;
+            padding: 150px 8% 40px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .mitra-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 20%, #a5f3fc 60%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mitra-hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 30px;
+        }
+
+        /* Trust Stats Bar */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto 50px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #38bdf8;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Showcase Image Card */
+        .mitra-showcase-container {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            position: relative;
+        }
+
+        .showcase-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 
+                        0 0 40px rgba(59, 130, 246, 0.12);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7), 
+                        0 0 50px rgba(59, 130, 246, 0.25);
+        }
+
+        .showcase-img-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(11, 15, 25, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .showcase-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            transition: transform 0.6s ease;
+        }
+
+        .showcase-card:hover .showcase-img-wrapper img {
+            transform: scale(1.02);
+        }
+
+        /* Overlay Hover Hint */
+        .hover-hint-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 15, 25, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .showcase-card:hover .hover-hint-overlay {
+            opacity: 1;
+        }
+
+        .hover-hint-btn {
+            background: var(--primary-accent);
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Category Badges Grid Below Image */
+        .mitra-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .category-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-card);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .category-chip i {
+            color: #38bdf8;
+        }
+
+        .category-chip:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.4);
+            color: #fff;
+        }
+
+        /* Partnership CTA Banner */
+        .cta-banner {
+            max-width: 1100px;
+            margin: 20px auto 80px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(6, 182, 212, 0.08));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 28px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .cta-banner p {
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 30px;
+            font-size: 1rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.98rem;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 9, 17, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            padding: 20px;
+        }
+
+        .lightbox-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--brand-red);
+            border-color: var(--brand-red);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-caption {
+            margin-top: 15px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lightbox-download {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lightbox-download:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(6, 9, 17, 0.9);
+            border-top: 1px solid var(--border-card);
+            padding: 60px 8% 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .footer-info p { color: var(--text-muted); max-width: 400px; font-size: 0.95rem; }
+
+        .footer-links h4 { font-size: 1.05rem; margin-bottom: 18px; color: #fff; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; font-size: 0.9rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--primary-accent); }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 868px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(11, 15, 25, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                padding: 40px 20px;
+                transition: 0.4s ease-in-out;
+                border-left: 1px solid var(--border-card);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            }
+            .nav-links.active { right: 0; }
+
+            .mitra-hero h1 { font-size: 2.3rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 15px; }
+            .showcase-card { padding: 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 480px) {
+            .mitra-hero h1 { font-size: 1.8rem; }
+            .cta-banner { padding: 30px 20px; }
+            .cta-banner h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Gradient Orbs -->
+    <div class="background-gradient">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <navbar>
+        <a href="index.html" class="logo">
+            PT MASA KINI MANDIRI <span>.</span>
+        </a>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
+            <li><a href="video.html">Video</a></li>
+            <li><a href="mitra.html" class="active">mitra</a></li>
+            <li><a href="hubungi-kami.html">Hubungi</a></li>
+            <li><a href="media.html">Media Kami</a></li>
+        </ul>
+    </navbar>
+
+    <!-- Header Section -->
+    <section class="mitra-hero reveal" id="mitra">
+        <div class="hero-badge">
+            <i class="fa-solid fa-handshake-simple"></i> Ekosistem Kolaborasi Tepercaya
+        </div>
+        <h1>Klien & Mitra Strategis Kami</h1>
+        <p>Kebanggaan bagi PT Masa Kini Mandiri (Lampung Post) atas kepercayaan yang diberikan oleh berbagai instansi pemerintah, BUMN, perguruan tinggi, dan korporasi swasta terkemuka.</p>
+
+        <!-- Stats Bar -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Instansi Pemerintah</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">BUMN & Swasta Nasional</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Perguruan Tinggi & Lembaga</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Showcase Section (Single Image Display) -->
+    <div class="mitra-showcase-container reveal">
+        <div class="showcase-card" id="openLightbox">
+            <div class="showcase-img-wrapper">
+                <img src="asset/mitra.png" alt="Daftar Mitra Strategis Lampung Post" id="mainMitraImg">
+                <div class="hover-hint-overlay">
+                    <div class="hover-hint-btn">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i> Klik untuk Perbesar Gambar
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Footer Chips -->
+            <div class="mitra-categories">
+                <div class="category-chip"><i class="fa-solid fa-building-columns"></i> Pemerintah Provinsi & Daerah</div>
+                <div class="category-chip"><i class="fa-solid fa-industry"></i> BUMN / BUMD</div>
+                <div class="category-chip"><i class="fa-solid fa-graduation-cap"></i> Perguruan Tinggi</div>
+                <div class="category-chip"><i class="fa-solid fa-briefcase"></i> Perbankan & Swasta</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Partnership Call to Action Banner -->
+    <div class="cta-banner reveal">
+        <h2>Ingin Menjadi Bagian dari Mitra Kami?</h2>
+        <p>Jangkau audiens lebih luas dan tingkatkan kredibilitas branding institusi Anda melalui jaringan media terpadu Lampung Post.</p>
+        <a href="mailto:marcomm@lampost.co" class="cta-btn">
+            <i class="fa-solid fa-paper-plane"></i> Hubungi Tim Marcomm
+        </a>
+    </div>
+
+    <!-- Lightbox Modal Zoom Window -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="closeLightbox">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img src="asset/mitra.png" alt="Daftar Mitra Strategis Lampung Post" class="lightbox-img" id="lightboxImg">
+            <div class="lightbox-caption">
+                <span><i class="fa-solid fa-circle-info"></i> Tampilan Resolusi Tinggi Logo Mitra PT Masa Kini Mandiri</span>
+                <a href="asset/mitra.png" download="Mitra_Lampung_Post.png" class="lightbox-download">
+                    <i class="fa-solid fa-download"></i> Unduh Gambar
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>PT Masa Kini Mandiri</h3>
+                <p>Bagian dari Media Group Network. Solusi media terpadu dan terpercaya di Lampung.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Kontak Kami</h4>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> marcomm@lampost.co</li>
+                    <li><i class="fa-solid fa-phone"></i> T. 0721 783693 / F. 0721 773888</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html#beranda">Beranda</a></li>
+                    <li><a href="tentang.html">Tentang Kami</a></li>
+                    <li><a href="index.html#ekosistem">Ekosistem</a></li>
+                    <li><a href="index.html#program">Program</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; COPYRIGHT 2026 PT MASA KINI MANDIRI. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Navigation Bar Mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Lightbox Modal Logic
+        const openLightbox = document.getElementById('openLightbox');
+        const closeLightbox = document.getElementById('closeLightbox');
+        const lightboxModal = document.getElementById('lightboxModal');
+
+        openLightbox.addEventListener('click', () => {
+            lightboxModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightboxModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                lightboxModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Scroll Observer for Entrance Animations
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Glass Card Tilt Holographic Hover Effect
+        const showcaseCard = document.querySelector('.showcase-card');
+        if (showcaseCard) {
+            showcaseCard.addEventListener('mousemove', (e) => {
+                if (window.innerWidth > 768) {
+                    const rect = showcaseCard.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    showcaseCard.style.transform = `translateY(-8px) rotateX(${-y / 45}deg) rotateY(${x / 45}deg)`;
+                }
+            });
+
+            showcaseCard.addEventListener('mouseleave', () => {
+                showcaseCard.style.transform = `translateY(0) rotateX(0deg) rotateY(0deg)`;
+            });
+        }
+    </script>
+</body>
+</html>

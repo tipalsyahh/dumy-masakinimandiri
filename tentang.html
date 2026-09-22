@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami & Sejarah - PT Masa Kini Mandiri (Lampung Post)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" sizes="192x192" href="https://lampost.co/otomatisasi-ai/img/icon.png" type="image/png">
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --border-card: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-accent: #3b82f6;
+            --secondary-accent: #06b6d4;
+            --brand-red: #ef4444;
+            --glow-color1: rgba(37, 99, 235, 0.25);
+            --glow-color2: rgba(14, 165, 233, 0.2);
+            --glow-color3: rgba(99, 102, 241, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+        .background-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0d1322 0%, #060911 100%);
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.6;
+            animation: floatOrb 20s infinite alternate ease-in-out;
+        }
+
+        .orb-1 { width: 500px; height: 500px; background: var(--glow-color1); top: -10%; left: -10%; }
+        .orb-2 { width: 600px; height: 600px; background: var(--glow-color2); bottom: -10%; right: -10%; animation-delay: -5s; }
+        .orb-3 { width: 450px; height: 450px; background: var(--glow-color3); top: 40%; left: 30%; animation-delay: -10s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 80px) scale(1.1); }
+            100% { transform: translate(-40px, -60px) scale(0.9); }
+        }
+
+        navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-card);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #fff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--brand-red); }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        section {
+            padding: 120px 8% 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-card);
+            border-radius: 24px;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                        0 0 20px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Hero Banner */
+        .about-hero {
+            position: relative;
+            text-align: center;
+            padding: 160px 8% 60px;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 20%, #a5f3fc 60%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Visi Misi Section */
+        .visimisi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .visi-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.05));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .visimisi-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .visimisi-title i {
+            color: #38bdf8;
+        }
+
+        .visi-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .misi-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .misi-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .misi-list li i {
+            color: #10b981;
+            font-size: 1.1rem;
+            margin-top: 4px;
+        }
+
+        /* Tokoh Kunci Section */
+        .tokoh-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .tokoh-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tokoh-img-wrapper {
+            position: relative;
+            width: 180px;
+            height: 220px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.3);
+        }
+
+        .tokoh-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%);
+            transition: all 0.5s ease;
+        }
+
+        .tokoh-card:hover .tokoh-img-wrapper img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .tokoh-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .tokoh-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Interactive Timeline Section */
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto 0;
+            padding: 20px 0;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary-accent), var(--secondary-accent), rgba(255,255,255,0.05));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+        }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 35px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 4px solid var(--primary-accent);
+            box-shadow: 0 0 15px var(--primary-accent);
+            z-index: 10;
+        }
+
+        .timeline-item.left .timeline-dot { right: -10px; }
+        .timeline-item.right .timeline-dot { left: -10px; }
+
+        .timeline-year {
+            display: inline-block;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Tagline Banner */
+        .tagline-banner {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(6, 182, 212, 0.08));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 28px;
+            padding: 50px 40px;
+            text-align: center;
+            margin-top: 60px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .tagline-quote {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .tagline-quote span {
+            color: #60a5fa;
+            text-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(6, 9, 17, 0.9);
+            border-top: 1px solid var(--border-card);
+            padding: 60px 8% 30px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .footer-info p { color: var(--text-muted); max-width: 400px; font-size: 0.95rem; }
+
+        .footer-links h4 { font-size: 1.05rem; margin-bottom: 18px; color: #fff; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; font-size: 0.9rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--primary-accent); }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE MOBILE & TABLET --- */
+        @media (max-width: 992px) {
+            .visimisi-grid { grid-template-columns: 1fr; }
+            .tokoh-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 868px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(11, 15, 25, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+                padding: 40px 20px;
+                transition: 0.4s ease-in-out;
+                border-left: 1px solid var(--border-card);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            }
+            .nav-links.active { right: 0; }
+
+            .about-hero h1 { font-size: 2.3rem; }
+
+            /* Responsive Timeline */
+            .timeline-container::before { left: 20px; }
+            .timeline-item { width: 100%; padding-left: 50px; padding-right: 10px; }
+            .timeline-item.left, .timeline-item.right { left: 0; text-align: left; }
+            .timeline-item.left .timeline-dot, .timeline-item.right .timeline-dot { left: 10px; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 480px) {
+            .about-hero h1 { font-size: 1.9rem; }
+            .tagline-quote { font-size: 1.3rem; }
+            .tokoh-img-wrapper { width: 150px; height: 190px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-gradient">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <navbar>
+        <a href="index.html" class="logo">
+            PT MASA KINI MANDIRI <span>.</span>
+        </a>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentang.html" class="active">Tentang Kami</a></li>
+            <li><a href="video.html">Video</a></li>
+            <li><a href="mitra.html">mitra</a></li>
+            <li><a href="hubungi-kami.html">Hubungi</a></li>
+            <li><a href="media.html">Media Kami</a></li>
+        </ul>
+    </navbar>
+
+    <!-- Hero Tentang -->
+    <section class="about-hero reveal" id="tentang">
+        <div class="hero-badge"><i class="fa-solid fa-landmark"></i> Profil & Dedikasi Jurnalistik</div>
+        <h1>Tentang Kami & Sejarah<br>PT Masa Kini Mandiri</h1>
+        <p>Mengenal fondasi Visi Misi, tokoh perintis, serta perjalanan panjang Lampung Post dari penyatuan media mingguan hingga menjadi institusi multiplatform tepercaya.</p>
+    </section>
+
+    <!-- Section Visi Misi -->
+    <section style="padding-top: 0;">
+        <div class="section-header reveal">
+            <h2>Visi & Misi</h2>
+            <p>Arah dan landasan utama PT Masa Kini Mandiri (Lampung Post) dalam memberikan kontribusi nyata bagi masyarakat.</p>
+        </div>
+
+        <div class="visimisi-grid">
+            <div class="glass-card visi-card reveal">
+                <div class="visimisi-title"><i class="fa-solid fa-eye"></i> Visi Kami</div>
+                <p class="visi-text">"Menjadi Media Multiplatform Terbesar dan Berpengaruh di Lampung."</p>
+            </div>
+
+            <div class="glass-card reveal">
+                <div class="visimisi-title"><i class="fa-solid fa-bullseye"></i> Misi Kami</div>
+                <ul class="misi-list">
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Menyampaikan informasi cepat, tepat, dan akurat.</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Mengedukasi, memotivasi, dan menginspirasi masyarakat melalui produk jurnalistik dan program siar yang berkualitas.</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Menjadi mitra strategis para pebisnis dan mengembangkan potensi daerah.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section Tokoh Pendiri & Kunci -->
+        <div class="section-header reveal">
+            <h2>Tokoh Pendiri & Kunci</h2>
+            <p>Para pilar utama yang meletakkan batu pertama serta memperkuat jejaring Lampung Post hingga jangkauan nasional.</p>
+        </div>
+
+        <div class="tokoh-grid">
+            <div class="glass-card tokoh-card reveal">
+                <div class="tokoh-img-wrapper">
+                    <img src="asset/sofian.webp" alt="Solfian Achmad" onerror="this.src='https://via.placeholder.com/180x220/1e293b/94a3b8?text=Solfian+Achmad'">
+                </div>
+                <div class="tokoh-name">Solfian Achmad</div>
+                <p class="tokoh-desc">
+                    <b>Pendiri Utama</b><br>
+                    Memprakarsai lahirnya Lampung Post pada 17 Juli 1974 dengan menghimpun tiga koran mingguan lokal demi membangun persuratkabaran yang independen dan profesional di Lampung.
+                </p>
+            </div>
+
+            <div class="glass-card tokoh-card reveal">
+                <div class="tokoh-img-wrapper">
+                    <img src="asset/suryapaloh.webp" alt="Surya Paloh" onerror="this.src='https://via.placeholder.com/180x220/1e293b/94a3b8?text=Surya+Paloh'">
+                </div>
+                <div class="tokoh-name">Surya Paloh</div>
+                <p class="tokoh-desc">
+                    <b>Media Group Network</b><br>
+                    Bergabung pada tahun 1985. Kepemimpinan dan jaringan penerbitan harian Media Indonesia yang dimilikinya memperkuat posisi Lampung Post dalam pilar Media Group.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Interactive Timeline Sejarah Detail -->
+    <section>
+        <div class="section-header reveal">
+            <h2>Garis Waktu Sejarah Detail</h2>
+            <p>Rekam jejak dan transformasi hukum, kelembagaan, serta perkembangan Lampung Post dari waktu ke waktu.</p>
+        </div>
+
+        <div class="timeline-container">
+            
+            <!-- Item 1: Latar Belakang Penyatuan -->
+            <div class="timeline-item left reveal">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <span class="timeline-year">Awal 1974</span>
+                    <div class="timeline-title">Penyatuan Tiga Surat Kabar</div>
+                    <p class="timeline-desc">Kala itu, tiga surat kabar mingguan terbit di Lampung: <b>Poesiban</b>, <b>Independen</b>, dan <b>Post Ekonomi</b>. Ketiganya belum memiliki percetakan sendiri dan manajemen profesional. Menindaklanjuti imbauan Menteri Penerangan RI, para pemimpin redaksi sepakat bersatu membentuk <b>Lampung Post</b>.</p>
+                </div>
+            </div>
+
+            <!-- Item 2: Terbit Perdana & Alamat -->
+            <div class="timeline-item right reveal">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <span class="timeline-year">10 Agustus 1974</span>
+                    <div class="timeline-title">Penerbitan Perdana Lampung Post</div>
+                    <p class="timeline-desc">Lampung Post resmi terbit pertama kali berdasarkan SK MENPEN RI No: 0148 SK DIRJEN P 6 SIT 1974. Kantor redaksi berlokasi di Jalan Soekarno-Hatta No. 108, Rajabasa, Bandar Lampung.</p>
+                </div>
+            </div>
+
+            <!-- Item 3: Peraturan SIUPP & Akta Notaris -->
+            <div class="timeline-item left reveal">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <span class="timeline-year">1984 – 1985</span>
+                    <div class="timeline-title">Penyesuaian SIUPP & PT Masa Kini Mandiri</div>
+                    <p class="timeline-desc">Memenuhi Permenpen RI No. 01/Per/Menpen/1984 & SK Menpen No. 214/KEP/Menpen/1984 tentang SIUPP, dilakukan perubahan akta perseroan oleh Notaris Imran Ma'ruf, SH di Tanjung Karang pada 6 April 1986 (Akta No. 26). Kemudian disempurnakan menjadi <b>PT Masa Kini Mandiri</b> lewat Akta Notaris No. 144 tanggal 28 September 1985.</p>
+                </div>
+            </div>
+
+            <!-- Item 4: Peralihan Badan Penerbit & SIUP -->
+            <div class="timeline-item right reveal">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <span class="timeline-year">Tahun 1986</span>
+                    <div class="timeline-title">Peralihan Yayasan ke Perseroan (PT)</div>
+                    <p class="timeline-desc">Harian Umum Lampung Post yang sebelumnya dikelola Badan Penerbit Yayasan Masa Kini resmi dialihkan ke perseroan <b>PT Masa Kini Mandiri</b> dengan Surat Izin Usaha Penerbitan (SIUP) nomor 150/SK/Men Pen/SIUP/a 7/1986.</p>
+                </div>
+            </div>
+
+            <!-- Item 5: Sinergi Radio SAI -->
+            <div class="timeline-item left reveal">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <span class="timeline-year">Tahun 2014</span>
+                    <div class="timeline-title">Kerja Sama Konvergensi Radio SAI</div>
+                    <p class="timeline-desc">Radio SAI resmi bekerja sama dengan Lampung Post, memperluas jangkauan siaran audio-broadcast interaktif serta memperkuat ekosistem konvergensi media multiplatform.</p>
+                </div>
+            </div>
+
+            <!-- Item 6: Era Multiplatform -->
+            <div class="timeline-item right reveal">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <span class="timeline-year">Masa Kini</span>
+                    <div class="timeline-title">One Stop Media Solution</div>
+                    <p class="timeline-desc">PT Masa Kini Mandiri bertransformasi penuh menghadirkan portal berita Lampost.co, Lampung Post Update (YouTube), Radio SAI 100FM, E-Paper, Publishing, dan Event Organizer profesional.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tagline Banner -->
+        <div class="tagline-banner reveal">
+            <div class="tagline-quote">
+                "TERUJI DAN TEPERCAYA"
+            </div>
+            <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 750px; margin: 0 auto;">
+                Eksis sebagai institusi media massa terbesar, paling berpengaruh, serta tepercaya dalam mendampingi perkembangan masyarakat Lampung.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>PT Masa Kini Mandiri</h3>
+                <p>Bagian dari Media Group Network. Solusi media terpadu dan terpercaya di Lampung.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Kontak Kami</h4>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> marcomm@lampost.co</li>
+                    <li><i class="fa-solid fa-phone"></i> T. 0721 783693 / F. 0721 773888</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html#beranda">Beranda</a></li>
+                    <li><a href="#tentang">Tentang Kami</a></li>
+                    <li><a href="index.html#ekosistem">Ekosistem</a></li>
+                    <li><a href="index.html#program">Program</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; COPYRIGHT 2026 PT MASA KINI MANDIRI. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Navigation Bar Mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close navbar menu when clicking link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Scroll Observer for Animations
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Glass Card Hover Effect (Mousemove)
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                if (window.innerWidth > 768) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    card.style.transform = `translateY(-8px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg)`;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `translateY(0) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
