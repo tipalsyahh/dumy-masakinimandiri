@@ -2,25 +2,28 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Galeri Video - Lampung Post Update</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" sizes="192x192" href="https://lampost.co/otomatisasi-ai/img/icon.png" type="image/png">
     <style>
         :root {
-            --bg-dark: #0b0f19;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --border-card: rgba(255, 255, 255, 0.08);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary-accent: #3b82f6;
-            --brand-red: #ef4444;
-            --glow-color1: rgba(37, 99, 235, 0.18);
-            --glow-color2: rgba(14, 165, 233, 0.15);
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border-card: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary-accent: #DC0000;
+            --primary-hover: #b30000;
+            --brand-red: #DC0000;
+            --navy-deep: #0f2b48;
+            --shadow-subtle: 0 10px 30px rgba(15, 23, 42, 0.05);
+            --shadow-hover: 0 20px 40px rgba(220, 0, 0, 0.12);
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -28,72 +31,94 @@
             scroll-behavior: smooth;
         }
 
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
         ::-webkit-scrollbar {
             width: 0;
             height: 0;
         }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
-
-        .background-gradient {
+        /* BACKGROUND PATTERN */
+        .grid-pattern {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #0d1322 0%, #060911 100%);
+            inset: 0;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.35;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.5;
-            animation: floatOrb 20s infinite alternate ease-in-out;
+        /* SVG ICON UTILITIES */
+        .svg-icon {
+            width: 1.15em;
+            height: 1.15em;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: -0.125em;
         }
 
-        .orb-1 { width: 500px; height: 500px; background: var(--glow-color1); top: -10%; left: -10%; }
-        .orb-2 { width: 600px; height: 600px; background: var(--glow-color2); bottom: -10%; right: -10%; animation-delay: -5s; }
-
-        @keyframes floatOrb {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-40px, -60px) scale(0.9); }
+        .svg-icon-lg {
+            width: 1.8rem;
+            height: 1.8rem;
+            fill: currentColor;
         }
 
+        /* NAVBAR HEADER FIXED */
         navbar {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 8%;
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-card);
+            padding: 22px 8%;
+            background: transparent;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            border-bottom: 1px solid transparent;
+            box-shadow: none;
             z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        navbar.scrolled {
+            padding: 12px 8%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-card);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .logo {
             font-weight: 800;
-            font-size: 1.25rem;
-            color: #fff;
+            font-size: 1.3rem;
+            color: var(--navy-deep);
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
             text-decoration: none;
         }
 
-        .logo span { color: var(--brand-red); }
+        .img-header {
+            width: 200px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
         .nav-links {
             display: flex;
@@ -103,27 +128,31 @@
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--navy-deep);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-weight: 600;
+            font-size: 0.95rem;
             transition: 0.3s;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-main);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-accent);
         }
 
         .menu-toggle {
             display: none;
-            font-size: 1.4rem;
-            color: #fff;
             cursor: pointer;
             z-index: 1001;
+            padding: 5px;
+            color: var(--navy-deep);
+            background: transparent;
+            border: none;
         }
 
         .video-hero {
             position: relative;
+            z-index: 1;
             text-align: center;
             padding: 140px 8% 20px;
         }
@@ -133,31 +162,36 @@
             align-items: center;
             gap: 8px;
             padding: 6px 16px;
-            border-radius: 50px;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.25);
-            color: #f87171;
-            font-size: 0.8rem;
-            font-weight: 600;
+            border-radius: 10px;
+            background: rgba(220, 0, 0, 0.08);
+            border: 1px solid rgba(220, 0, 0, 0.2);
+            color: var(--brand-red);
+            font-size: 0.85rem;
+            font-weight: 700;
             margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .video-hero h1 {
-            font-size: 2.5rem;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 12px;
-            color: #fff;
+            color: var(--navy-deep);
+            letter-spacing: -0.5px;
         }
 
         .video-hero p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
             max-width: 620px;
             margin: 0 auto 10px;
         }
 
         .video-grid {
+            position: relative;
+            z-index: 1;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 22px;
@@ -168,18 +202,19 @@
         .video-card {
             background: var(--bg-card);
             border: 1px solid var(--border-card);
-            border-radius: 16px;
+            border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            box-shadow: var(--shadow-subtle);
         }
 
         .video-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-6px);
+            border-color: var(--brand-red);
+            box-shadow: var(--shadow-hover);
         }
 
         .card-thumb-wrapper {
@@ -204,33 +239,32 @@
         .small-play-btn {
             position: absolute;
             inset: 0;
-            background: rgba(11, 15, 25, 0.3);
+            background: rgba(15, 43, 72, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
         }
 
-        .small-play-btn i {
+        .small-play-btn span {
             width: 42px;
             height: 42px;
-            border-radius: 50%;
-            background: rgba(239, 68, 68, 0.9);
+            border-radius: 10px;
+            background: var(--brand-red);
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            padding-left: 2px;
+            box-shadow: 0 4px 15px rgba(220, 0, 0, 0.4);
             transition: transform 0.3s ease;
         }
 
-        .video-card:hover .small-play-btn i {
+        .video-card:hover .small-play-btn span {
             transform: scale(1.1);
         }
 
         .video-card-body {
-            padding: 16px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -238,11 +272,11 @@
         }
 
         .video-card-title {
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--navy-deep);
             line-height: 1.4;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -250,15 +284,15 @@
         }
 
         .video-meta {
-            font-size: 0.78rem;
-            color: #64748b;
-            font-weight: 500;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .video-meta i {
+        .video-meta .svg-icon {
             color: var(--brand-red);
         }
 
@@ -268,14 +302,19 @@
             padding: 50px 20px;
             color: var(--text-muted);
             font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        /* Modal Player Murni Hanya Video */
+        /* MODAL PLAYER MURNI HANYA VIDEO */
         .cinema-modal {
             position: fixed;
             inset: 0;
-            background: rgba(6, 9, 17, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             z-index: 2000;
             display: flex;
             justify-content: center;
@@ -296,10 +335,10 @@
             width: 100%;
             max-width: 960px;
             background: #000;
-            border-radius: 16px;
+            border-radius: 10px;
             overflow: hidden;
             border: 1px solid var(--border-card);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
         .iframe-container {
@@ -322,7 +361,6 @@
             background: transparent;
             border: none;
             color: #fff;
-            font-size: 1.8rem;
             cursor: pointer;
             z-index: 10;
             transition: color 0.2s ease;
@@ -333,33 +371,71 @@
         }
 
         footer {
-            background: rgba(6, 9, 17, 0.9);
+            background: #ffffff;
             border-top: 1px solid var(--border-card);
-            padding: 50px 8% 25px;
+            padding: 60px 8% 30px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 40px;
+            margin-bottom: 40px;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .footer-info h3 { font-size: 1.3rem; margin-bottom: 12px; }
-        .footer-info p { color: var(--text-muted); max-width: 400px; font-size: 0.9rem; }
+        .footer-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--navy-deep);
+        }
 
-        .footer-links h4 { font-size: 1rem; margin-bottom: 14px; color: #fff; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 8px; font-size: 0.88rem; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
-        .footer-links a:hover { color: var(--primary-accent); }
+        .footer-info p {
+            color: var(--text-muted);
+            max-width: 400px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            color: var(--navy-deep);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-red);
+        }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 25px;
+            border-top: 1px solid var(--border-card);
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
 
         .reveal {
@@ -378,44 +454,96 @@
         }
 
         @media (max-width: 768px) {
-            .menu-toggle { display: block; }
+            navbar {
+                padding: 15px 20px;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border-bottom: 1px solid transparent !important;
+                box-shadow: none !important;
+            }
+
+            navbar.scrolled {
+                padding: 12px 20px;
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(12px) !important;
+                -webkit-backdrop-filter: blur(12px) !important;
+                border-bottom: 1px solid var(--border-card) !important;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+            }
+
+            .img-header {
+                width: 140px;
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 38px;
+                height: 38px;
+                color: var(--navy-deep) !important;
+            }
+
             .nav-links {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 75%;
-                max-width: 280px;
+                width: 80%;
+                max-width: 320px;
                 height: 100vh;
-                background: rgba(11, 15, 25, 0.98);
-                backdrop-filter: blur(20px);
+                background: #ffffff;
                 flex-direction: column;
-                justify-content: center;
-                gap: 20px;
-                padding: 30px 20px;
-                transition: 0.4s ease;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 0;
+                padding: 90px 24px 30px;
+                transition: all 0.4s ease;
                 border-left: 1px solid var(--border-card);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
             }
-            .nav-links.active { right: 0; }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid var(--border-card);
+            }
+
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 16px 8px;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--navy-deep);
+            }
+
+            .video-hero { padding: 110px 5% 20px; }
             .video-hero h1 { font-size: 2rem; }
             .video-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-gradient">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-    </div>
+    <div class="grid-pattern"></div>
 
-    <navbar>
+    <navbar id="mainNavbar">
         <a href="index.html" class="logo">
-            PT MASA KINI MANDIRI <span>.</span>
+            <img src="asset/epaper.webp" alt="Lampung Post" class="img-header">
         </a>
-        <div class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars" id="menuIcon"></i>
-        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+            <!-- HAMBURGER SVG -->
+            <svg id="menuIcon" class="svg-icon-lg" viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+            </svg>
+        </button>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Beranda</a></li>
             <li><a href="tentang.html">Tentang Kami</a></li>
@@ -428,7 +556,7 @@
 
     <section class="video-hero reveal">
         <div class="hero-badge">
-            <i class="fa-brands fa-youtube"></i> Lampung Post Update
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> Lampung Post Update
         </div>
         <h1>Galeri Video</h1>
         <p>Saksikan tayangan berita dan video terbaru dari Channel YouTube Lampung Post Update.</p>
@@ -436,15 +564,17 @@
 
     <div style="padding: 0 8%;">
         <div class="video-grid reveal" id="videoGrid">
-            <div class="status-msg"><i class="fa-solid fa-circle-notch fa-spin"></i> Memuat video...</div>
+            <div class="status-msg">
+                <svg class="svg-icon" viewBox="0 0 24 24" style="animation: spin 1s linear infinite;"><path d="M12 4V2A10 10 0 0 0 2 12h2a8 8 0 0 1 8-8z"/></svg> Memuat video...
+            </div>
         </div>
     </div>
 
-    <!-- Modal Murni Video (Deskripsi Dihapus Total) -->
+    <!-- Modal Murni Video -->
     <div class="cinema-modal" id="cinemaModal">
         <div class="cinema-box">
             <button class="modal-close-btn" onclick="closeCinema()" title="Tutup">
-                <i class="fa-solid fa-xmark"></i>
+                <svg class="svg-icon-lg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
             </button>
             <div class="iframe-container">
                 <iframe id="cinemaIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -461,9 +591,9 @@
             <div class="footer-links">
                 <h4>Kontak Kami</h4>
                 <ul>
-                    <li><i class="fa-solid fa-envelope"></i> marcomm@lampost.co</li>
-                    <li><i class="fa-solid fa-phone"></i> T. 0721 783693 / F. 0721 773888</li>
-                    <li><i class="fa-solid fa-location-dot"></i> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> marcomm@lampost.co</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> T. 0721 783693 / F. 0721 773888</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -481,7 +611,27 @@
         </div>
     </footer>
 
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
     <script>
+        const mainNavbar = document.getElementById('mainNavbar');
+
+        function checkScroll() {
+            if (window.scrollY > 30) {
+                mainNavbar.classList.add('scrolled');
+            } else {
+                mainNavbar.classList.remove('scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
         async function fetchYouTubeData() {
             const apiEndpoint = 'https://lampost.co/youtube.php';
             const grid = document.getElementById('videoGrid');
@@ -515,15 +665,17 @@
                             const cardHTML = `
                                 <div class="video-card" onclick="openCinema('${videoId}')">
                                     <div class="card-thumb-wrapper">
-                                        <img src="${thumb}" alt="${escapeQuotes(title)}" onerror="this.src='https://via.placeholder.com/480x270/1e293b/94a3b8?text=Lampung+Post+Video'">
+                                        <img src="${thumb}" alt="${escapeQuotes(title)}" onerror="this.src='https://via.placeholder.com/480x270/e2e8f0/64748b?text=Lampung+Post+Video'">
                                         <div class="small-play-btn">
-                                            <i class="fa-solid fa-play"></i>
+                                            <span>
+                                                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="video-card-body">
                                         <div class="video-card-title">${title}</div>
                                         <div class="video-meta">
-                                            <i class="fa-regular fa-clock"></i> ${published ? published : 'Lampung Post Update'}
+                                            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> ${published ? published : 'Lampung Post Update'}
                                         </div>
                                     </div>
                                 </div>
@@ -536,7 +688,7 @@
                 }
             } catch (error) {
                 console.error("Gagal mengambil data dari youtube.php:", error);
-                grid.innerHTML = '<div class="status-msg"><i class="fa-solid fa-exclamation-triangle"></i> Gagal memuat data video dari server.</div>';
+                grid.innerHTML = '<div class="status-msg">Gagal memuat data video dari server.</div>';
             }
         }
 
@@ -544,12 +696,10 @@
             return str ? str.replace(/'/g, "\\'").replace(/"/g, '&quot;') : '';
         }
 
-        // Fungsi Pemutaran Video Teruji Bebas Error 153
         function openCinema(youtubeId) {
             const modal = document.getElementById('cinemaModal');
             const iframe = document.getElementById('cinemaIframe');
 
-            // Format URL aman untuk mencegah Error 153 Embed YouTube
             const domainOrigin = window.location.origin && window.location.origin !== 'null' ? window.location.origin : 'https://lampost.co';
             iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&enablejsapi=1&origin=${encodeURIComponent(domainOrigin)}`;
 
@@ -580,9 +730,9 @@
             menuToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
                 if (navLinks.classList.contains('active')) {
-                    menuIcon.className = 'fa-solid fa-times';
+                    menuIcon.innerHTML = '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>';
                 } else {
-                    menuIcon.className = 'fa-solid fa-bars';
+                    menuIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
                 }
             });
         }

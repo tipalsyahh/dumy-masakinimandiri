@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Klien & Mitra Strategis - PT Masa Kini Mandiri (Lampung Post)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="icon" sizes="192x192" href="https://lampost.co/otomatisasi-ai/img/icon.png" type="image/png">
     <style>
         :root {
-            --bg-dark: #0b0f19;
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --border-card: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary-accent: #3b82f6;
-            --secondary-accent: #06b6d4;
-            --brand-red: #ef4444;
-            --glow-color1: rgba(37, 99, 235, 0.25);
-            --glow-color2: rgba(14, 165, 233, 0.2);
-            --glow-color3: rgba(99, 102, 241, 0.15);
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border-card: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary-accent: #DC0000;
+            --primary-hover: #b30000;
+            --brand-red: #DC0000;
+            --navy-deep: #0f2b48;
+            --shadow-subtle: 0 10px 30px rgba(15, 23, 42, 0.05);
+            --shadow-hover: 0 20px 40px rgba(220, 0, 0, 0.12);
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -30,11 +34,15 @@
             scroll-behavior: smooth;
         }
 
+        html,
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            width: 100%;
+            max-width: 100%;
             overflow-x: hidden;
+            background-color: var(--bg-main);
+            color: var(--text-main);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         ::-webkit-scrollbar {
@@ -42,65 +50,78 @@
             height: 0;
         }
 
-        /* Ambient Animated Orbs Background */
-        .background-gradient {
+        /* BACKGROUND PATTERN */
+        .grid-pattern {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #0d1322 0%, #060911 100%);
+            inset: 0;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.35;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.6;
-            animation: floatOrb 20s infinite alternate ease-in-out;
+        /* STYLES FOR SVG ICONS */
+        .svg-icon {
+            width: 1.2em;
+            height: 1.2em;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: -0.125em;
         }
 
-        .orb-1 { width: 500px; height: 500px; background: var(--glow-color1); top: -10%; left: -10%; }
-        .orb-2 { width: 600px; height: 600px; background: var(--glow-color2); bottom: -10%; right: -10%; animation-delay: -5s; }
-        .orb-3 { width: 450px; height: 450px; background: var(--glow-color3); top: 40%; left: 30%; animation-delay: -10s; }
-
-        @keyframes floatOrb {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(60px, 80px) scale(1.1); }
-            100% { transform: translate(-40px, -60px) scale(0.9); }
+        .svg-icon-lg {
+            width: 2rem;
+            height: 2rem;
+            fill: currentColor;
         }
 
-        /* Navbar */
+        /* NAVBAR HEADER FIXED */
         navbar {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 8%;
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-card);
+            padding: 22px 8%;
+            background: transparent;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            border-bottom: 1px solid transparent;
+            box-shadow: none;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+        }
+
+        navbar.scrolled {
+            padding: 12px 8%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-card);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .logo {
             font-weight: 800;
             font-size: 1.3rem;
-            color: #fff;
+            color: var(--navy-deep);
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
             text-decoration: none;
         }
 
-        .logo span { color: var(--brand-red); }
+        .img-header {
+            width: 200px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
         .nav-links {
             display: flex;
@@ -110,65 +131,68 @@
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--navy-deep);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: 0.3s;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-main);
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-accent);
         }
 
         .menu-toggle {
             display: none;
-            font-size: 1.5rem;
-            color: #fff;
             cursor: pointer;
             z-index: 1001;
+            padding: 5px;
+            color: var(--navy-deep);
         }
 
-        /* Hero Header Section */
+        /* HERO SECTION */
         .mitra-hero {
             position: relative;
+            z-index: 1;
             text-align: center;
-            padding: 150px 8% 40px;
+            padding: 140px 8% 40px;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 20px;
-            border-radius: 50px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            color: #60a5fa;
+            padding: 6px 18px;
+            border-radius: 10px;
+            background: rgba(220, 0, 0, 0.08);
+            border: 1px solid rgba(220, 0, 0, 0.2);
+            color: var(--brand-red);
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .mitra-hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 20%, #a5f3fc 60%, #60a5fa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--navy-deep);
+            letter-spacing: -0.5px;
         }
 
         .mitra-hero p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             max-width: 750px;
-            margin: 0 auto 30px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
         }
 
-        /* Trust Stats Bar */
+        /* STATS GRID */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -178,67 +202,73 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: #ffffff;
             border: 1px solid var(--border-card);
-            border-radius: 20px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 24px 20px;
             text-align: center;
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-red);
+            box-shadow: var(--shadow-hover);
         }
 
         .stat-number {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 800;
-            color: #38bdf8;
+            color: var(--brand-red);
             margin-bottom: 4px;
+            line-height: 1;
         }
 
         .stat-label {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--navy-deep);
+            font-weight: 700;
         }
 
-        /* Showcase Image Card */
+        /* SHOWCASE IMAGE CONTAINER */
         .mitra-showcase-container {
+            position: relative;
+            z-index: 1;
             max-width: 1100px;
             margin: 0 auto 60px;
-            position: relative;
+            padding: 0 8%;
         }
 
         .showcase-card {
             position: relative;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 30px;
-            padding: 40px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 
-                        0 0 40px rgba(59, 130, 246, 0.12);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.4s ease;
             cursor: pointer;
             overflow: hidden;
         }
 
         .showcase-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7), 
-                        0 0 50px rgba(59, 130, 246, 0.25);
+            transform: translateY(-6px);
+            border-color: var(--brand-red);
+            box-shadow: var(--shadow-hover);
         }
 
         .showcase-img-wrapper {
             position: relative;
             width: 100%;
-            border-radius: 20px;
+            border-radius: 10px;
             overflow: hidden;
-            background: rgba(11, 15, 25, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #f8fafc;
+            border: 1px solid var(--border-card);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px;
+            padding: 15px;
         }
 
         .showcase-img-wrapper img {
@@ -246,29 +276,29 @@
             height: auto;
             display: block;
             object-fit: contain;
-            transition: transform 0.6s ease;
+            transition: transform 0.5s ease;
         }
 
         .showcase-card:hover .showcase-img-wrapper img {
-            transform: scale(1.02);
+            transform: scale(1.015);
         }
 
-        /* Overlay Hover Hint */
+        /* HOVER HINT OVERLAY */
         .hover-hint-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(11, 15, 25, 0.4);
+            background: rgba(15, 43, 72, 0.4);
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            color: #fff;
+            color: #ffffff;
             font-weight: 700;
             font-size: 1rem;
             opacity: 0;
             transition: opacity 0.3s ease;
-            border-radius: 20px;
+            border-radius: 10px;
         }
 
         .showcase-card:hover .hover-hint-overlay {
@@ -276,63 +306,70 @@
         }
 
         .hover-hint-btn {
-            background: var(--primary-accent);
-            padding: 12px 24px;
-            border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5);
+            background: var(--brand-red);
+            color: #ffffff;
+            padding: 12px 26px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(220, 0, 0, 0.35);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-size: 0.92rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Category Badges Grid Below Image */
+        /* CATEGORY CHIPS */
         .mitra-categories {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 35px;
+            gap: 12px;
+            margin-top: 30px;
         }
 
         .category-chip {
-            background: rgba(255, 255, 255, 0.05);
+            background: #f1f5f9;
             border: 1px solid var(--border-card);
             padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--navy-deep);
             display: flex;
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
         }
 
-        .category-chip i {
-            color: #38bdf8;
+        .category-chip .svg-icon {
+            color: var(--brand-red);
         }
 
         .category-chip:hover {
-            background: rgba(59, 130, 246, 0.15);
-            border-color: rgba(59, 130, 246, 0.4);
-            color: #fff;
+            background: rgba(220, 0, 0, 0.08);
+            border-color: rgba(220, 0, 0, 0.3);
+            color: var(--brand-red);
         }
 
-        /* Partnership CTA Banner */
+        /* CTA BANNER */
         .cta-banner {
+            position: relative;
+            z-index: 1;
             max-width: 1100px;
             margin: 20px auto 80px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(6, 182, 212, 0.08));
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 28px;
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            border-radius: 10px;
             padding: 50px 40px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-subtle);
         }
 
         .cta-banner h2 {
             font-size: 2rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--navy-deep);
             margin-bottom: 12px;
         }
 
@@ -347,36 +384,39 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
-            color: #fff;
+            background: var(--brand-red);
+            color: #ffffff;
             padding: 14px 32px;
-            border-radius: 50px;
+            border-radius: 10px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 0.98rem;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(220, 0, 0, 0.25);
             transition: all 0.3s ease;
         }
 
         .cta-btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.6);
+            background: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(220, 0, 0, 0.35);
         }
 
-        /* Lightbox Modal */
+        /* LIGHTBOX MODAL */
         .lightbox-modal {
             position: fixed;
             inset: 0;
-            background: rgba(6, 9, 17, 0.95);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 2000;
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             padding: 20px;
         }
 
@@ -387,7 +427,7 @@
 
         .lightbox-content {
             position: relative;
-            max-width: 90vw;
+            max-width: 92vw;
             max-height: 90vh;
             display: flex;
             flex-direction: column;
@@ -398,21 +438,22 @@
             max-width: 100%;
             max-height: 80vh;
             object-fit: contain;
-            border-radius: 16px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-card);
+            background: #ffffff;
         }
 
         .lightbox-close {
             position: absolute;
             top: -50px;
             right: 0;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            color: var(--navy-deep);
             font-size: 1.2rem;
             cursor: pointer;
             display: flex;
@@ -423,67 +464,65 @@
 
         .lightbox-close:hover {
             background: var(--brand-red);
+            color: #ffffff;
             border-color: var(--brand-red);
-            transform: rotate(90deg);
         }
 
         .lightbox-caption {
             margin-top: 15px;
-            color: var(--text-muted);
+            color: #ffffff;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .lightbox-download {
-            color: #38bdf8;
+            color: #ffffff;
+            background: var(--brand-red);
+            padding: 6px 16px;
+            border-radius: 10px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            font-size: 0.85rem;
+            transition: 0.3s;
         }
 
         .lightbox-download:hover {
-            text-decoration: underline;
+            background: var(--primary-hover);
         }
 
-        /* Footer */
-        footer {
-            background: rgba(6, 9, 17, 0.9);
-            border-top: 1px solid var(--border-card);
-            padding: 60px 8% 30px;
+        /* ANIMASI LOAD HALAMAN */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.25s; }
+        .delay-3 { animation-delay: 0.4s; }
 
-        .footer-info h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .footer-info p { color: var(--text-muted); max-width: 400px; font-size: 0.95rem; }
-
-        .footer-links h4 { font-size: 1.05rem; margin-bottom: 18px; color: #fff; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 10px; font-size: 0.9rem; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
-        .footer-links a:hover { color: var(--primary-accent); }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-            font-size: 0.85rem;
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
 
         .reveal.active {
@@ -491,72 +530,207 @@
             transform: translateY(0);
         }
 
-        /* RESPONSIVE MEDIA QUERIES */
-        @media (max-width: 868px) {
-            .menu-toggle { display: block; }
+        /* FOOTER */
+        footer {
+            background: #ffffff;
+            border-top: 1px solid var(--border-card);
+            padding: 60px 8% 30px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--navy-deep);
+        }
+
+        .footer-info p {
+            color: var(--text-muted);
+            max-width: 400px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            color: var(--navy-deep);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-card);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media screen and (max-width: 868px) {
+            navbar {
+                padding: 15px 20px;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border-bottom: 1px solid transparent !important;
+                box-shadow: none !important;
+            }
+
+            navbar.scrolled {
+                padding: 12px 20px;
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(12px) !important;
+                -webkit-backdrop-filter: blur(12px) !important;
+                border-bottom: 1px solid var(--border-card) !important;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+            }
+
+            .img-header {
+                width: 140px;
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 38px;
+                height: 38px;
+                background: transparent;
+                border: none;
+                color: var(--navy-deep) !important;
+            }
+
             .nav-links {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 75%;
-                max-width: 300px;
+                width: 80%;
+                max-width: 320px;
                 height: 100vh;
-                background: rgba(11, 15, 25, 0.98);
-                backdrop-filter: blur(20px);
+                background: #ffffff;
                 flex-direction: column;
-                justify-content: center;
-                gap: 20px;
-                padding: 40px 20px;
-                transition: 0.4s ease-in-out;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 0;
+                padding: 90px 24px 30px;
+                transition: all 0.4s ease;
                 border-left: 1px solid var(--border-card);
-                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
             }
-            .nav-links.active { right: 0; }
 
-            .mitra-hero h1 { font-size: 2.3rem; }
-            .stats-grid { grid-template-columns: 1fr; gap: 15px; }
-            .showcase-card { padding: 20px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid var(--border-card);
+            }
+
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 16px 8px;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--navy-deep);
+            }
+
+            .mitra-hero {
+                padding: 110px 5% 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .showcase-card {
+                padding: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
 
-        @media (max-width: 480px) {
-            .mitra-hero h1 { font-size: 1.8rem; }
-            .cta-banner { padding: 30px 20px; }
-            .cta-banner h2 { font-size: 1.5rem; }
+        @media screen and (max-width: 480px) {
+            .cta-banner {
+                padding: 30px 20px;
+            }
+
+            .cta-banner h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Ambient Gradient Orbs -->
-    <div class="background-gradient">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
-    </div>
+    <div class="grid-pattern"></div>
 
-    <!-- Navigation Bar -->
-    <navbar>
+    <navbar id="mainNavbar">
         <a href="index.html" class="logo">
-            PT MASA KINI MANDIRI <span>.</span>
+            <img src="asset/epaper.webp" alt="Lampung Post" class="img-header">
         </a>
         <div class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars"></i>
+            <!-- HAMBURGER SVG -->
+            <svg id="menuIcon" class="svg-icon-lg" viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+            </svg>
         </div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Beranda</a></li>
             <li><a href="tentang.html">Tentang Kami</a></li>
             <li><a href="video.html">Video</a></li>
-            <li><a href="mitra.html" class="active">mitra</a></li>
+            <li><a href="mitra.html" class="active">Mitra</a></li>
             <li><a href="hubungi-kami.html">Hubungi</a></li>
             <li><a href="media-kami.html">Media Kami</a></li>
         </ul>
     </navbar>
 
     <!-- Header Section -->
-    <section class="mitra-hero reveal" id="mitra">
+    <section class="mitra-hero animate-fade-up" id="mitra">
         <div class="hero-badge">
-            <i class="fa-solid fa-handshake-simple"></i> Ekosistem Kolaborasi Tepercaya
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> Ekosistem Kolaborasi Tepercaya
         </div>
         <h1>Klien & Mitra Strategis Kami</h1>
         <p>Kebanggaan bagi PT Masa Kini Mandiri (Lampung Post) atas kepercayaan yang diberikan oleh berbagai instansi pemerintah, BUMN, perguruan tinggi, dan korporasi swasta terkemuka.</p>
@@ -578,34 +752,42 @@
         </div>
     </section>
 
-    <!-- Interactive Showcase Section (Single Image Display) -->
-    <div class="mitra-showcase-container reveal">
+    <!-- Interactive Showcase Section -->
+    <div class="mitra-showcase-container animate-fade-up delay-1">
         <div class="showcase-card" id="openLightbox">
             <div class="showcase-img-wrapper">
                 <img src="asset/mitra.png" alt="Daftar Mitra Strategis Lampung Post" id="mainMitraImg">
                 <div class="hover-hint-overlay">
                     <div class="hover-hint-btn">
-                        <i class="fa-solid fa-magnifying-glass-plus"></i> Klik untuk Perbesar Gambar
+                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg> Klik untuk Perbesar Gambar
                     </div>
                 </div>
             </div>
 
             <!-- Categories Footer Chips -->
             <div class="mitra-categories">
-                <div class="category-chip"><i class="fa-solid fa-building-columns"></i> Pemerintah Provinsi & Daerah</div>
-                <div class="category-chip"><i class="fa-solid fa-industry"></i> BUMN / BUMD</div>
-                <div class="category-chip"><i class="fa-solid fa-graduation-cap"></i> Perguruan Tinggi</div>
-                <div class="category-chip"><i class="fa-solid fa-briefcase"></i> Perbankan & Swasta</div>
+                <div class="category-chip">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg> Pemerintah Provinsi & Daerah
+                </div>
+                <div class="category-chip">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zm-2 12H4v-2h6v2zm0-4H4v-2h6v2zm0-4H4V9h6v2zm0-4H4V5h6v2zm10 12h-8V9h8v10z"/></svg> BUMN / BUMD
+                </div>
+                <div class="category-chip">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg> Perguruan Tinggi
+                </div>
+                <div class="category-chip">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg> Perbankan & Swasta
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Partnership Call to Action Banner -->
-    <div class="cta-banner reveal">
+    <div class="cta-banner animate-fade-up delay-2">
         <h2>Ingin Menjadi Bagian dari Mitra Kami?</h2>
         <p>Jangkau audiens lebih luas dan tingkatkan kredibilitas branding institusi Anda melalui jaringan media terpadu Lampung Post.</p>
         <a href="mailto:marcomm@lampost.co" class="cta-btn">
-            <i class="fa-solid fa-paper-plane"></i> Hubungi Tim Marcomm
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg> Hubungi Tim Marcomm
         </a>
     </div>
 
@@ -613,20 +795,20 @@
     <div class="lightbox-modal" id="lightboxModal">
         <div class="lightbox-content">
             <button class="lightbox-close" id="closeLightbox">
-                <i class="fa-solid fa-xmark"></i>
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
             </button>
             <img src="asset/mitra.png" alt="Daftar Mitra Strategis Lampung Post" class="lightbox-img" id="lightboxImg">
             <div class="lightbox-caption">
-                <span><i class="fa-solid fa-circle-info"></i> Tampilan Resolusi Tinggi Logo Mitra PT Masa Kini Mandiri</span>
+                <span><svg class="svg-icon" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg> Tampilan Resolusi Tinggi Logo Mitra PT Masa Kini Mandiri</span>
                 <a href="asset/mitra.png" download="Mitra_Lampung_Post.png" class="lightbox-download">
-                    <i class="fa-solid fa-download"></i> Unduh Gambar
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> Unduh Gambar
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer class="animate-fade-up delay-3">
         <div class="footer-grid">
             <div class="footer-info">
                 <h3>PT Masa Kini Mandiri</h3>
@@ -635,9 +817,9 @@
             <div class="footer-links">
                 <h4>Kontak Kami</h4>
                 <ul>
-                    <li><i class="fa-solid fa-envelope"></i> marcomm@lampost.co</li>
-                    <li><i class="fa-solid fa-phone"></i> T. 0721 783693 / F. 0721 773888</li>
-                    <li><i class="fa-solid fa-location-dot"></i> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> marcomm@lampost.co</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> T. 0721 783693 / F. 0721 773888</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -656,46 +838,66 @@
     </footer>
 
     <script>
+        const mainNavbar = document.getElementById('mainNavbar');
+
+        // CHECK SCROLL NAVBAR
+        function checkScroll() {
+            if (window.scrollY > 30) {
+                mainNavbar.classList.add('scrolled');
+            } else {
+                mainNavbar.classList.remove('scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
         // Toggle Navigation Bar Mobile
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
+        const menuIcon = document.getElementById('menuIcon');
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    menuIcon.innerHTML = '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>';
+                } else {
+                    menuIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
+                }
+            });
+        }
 
         // Lightbox Modal Logic
         const openLightbox = document.getElementById('openLightbox');
         const closeLightbox = document.getElementById('closeLightbox');
         const lightboxModal = document.getElementById('lightboxModal');
 
-        openLightbox.addEventListener('click', () => {
-            lightboxModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+        if (openLightbox) {
+            openLightbox.addEventListener('click', () => {
+                lightboxModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
 
-        closeLightbox.addEventListener('click', () => {
-            lightboxModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-
-        lightboxModal.addEventListener('click', (e) => {
-            if (e.target === lightboxModal) {
+        if (closeLightbox) {
+            closeLightbox.addEventListener('click', () => {
                 lightboxModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
-            }
-        });
+            });
+        }
 
-        // Scroll Observer for Entrance Animations
-        const observerOptions = { threshold: 0.15 };
+        if (lightboxModal) {
+            lightboxModal.addEventListener('click', (e) => {
+                if (e.target === lightboxModal) {
+                    lightboxModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Scroll Observer for Animations
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -705,23 +907,7 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Glass Card Tilt Holographic Hover Effect
-        const showcaseCard = document.querySelector('.showcase-card');
-        if (showcaseCard) {
-            showcaseCard.addEventListener('mousemove', (e) => {
-                if (window.innerWidth > 768) {
-                    const rect = showcaseCard.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    showcaseCard.style.transform = `translateY(-8px) rotateX(${-y / 45}deg) rotateY(${x / 45}deg)`;
-                }
-            });
-
-            showcaseCard.addEventListener('mouseleave', () => {
-                showcaseCard.style.transform = `translateY(0) rotateX(0deg) rotateY(0deg)`;
-            });
-        }
     </script>
 </body>
+
 </html>

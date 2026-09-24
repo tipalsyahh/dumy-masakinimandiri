@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PT Masa Kini Mandiri - Lampung Post</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="icon" sizes="192x192" href="https://lampost.co/otomatisasi-ai/img/icon.png" type="image/png">
     <style>
         :root {
-            --bg-dark: #0b0f19;
-            --bg-card: rgba(255, 255, 255, 0.05);
-            --border-card: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary-accent: #3b82f6;
-            --secondary-accent: #06b6d4;
-            --brand-red: #ef4444;
-            --glow-color1: rgba(37, 99, 235, 0.25);
-            --glow-color2: rgba(14, 165, 233, 0.2);
-            --glow-color3: rgba(99, 102, 241, 0.15);
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border-card: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary-accent: #DC0000;
+            --primary-hover: #b30000;
+            --brand-red: #DC0000;
+            --navy-deep: #0f2b48;
+            --shadow-subtle: 0 10px 30px rgba(15, 23, 42, 0.05);
+            --shadow-hover: 0 20px 40px rgba(220, 0, 0, 0.12);
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -30,10 +34,13 @@
             scroll-behavior: smooth;
         }
 
+        html,
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            width: 100%;
+            max-width: 100%;
             overflow-x: hidden;
+            background-color: var(--bg-main);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
@@ -50,69 +57,65 @@
             height: 100vh;
             z-index: -1;
             overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #0d1322 0%, #060911 100%);
+            background: #f8fafc;
         }
 
-        .gradient-orb {
+        .background-gradient::before {
+            content: '';
             position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.6;
-            animation: floatOrb 20s infinite alternate ease-in-out;
+            inset: 0;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.35;
         }
 
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: var(--glow-color1);
-            top: -10%;
-            left: -10%;
+        /* STYLES FOR SVG ICONS */
+        .svg-icon {
+            width: 1.2em;
+            height: 1.2em;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: -0.125em;
         }
 
-        .orb-2 {
-            width: 600px;
-            height: 600px;
-            background: var(--glow-color2);
-            bottom: -10%;
-            right: -10%;
-            animation-delay: -5s;
+        .svg-icon-lg {
+            width: 2rem;
+            height: 2rem;
+            fill: currentColor;
         }
 
-        .orb-3 {
-            width: 450px;
-            height: 450px;
-            background: var(--glow-color3);
-            top: 40%;
-            left: 30%;
-            animation-delay: -10s;
-        }
-
-        @keyframes floatOrb {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(60px, 80px) scale(1.1); }
-            100% { transform: translate(-40px, -60px) scale(0.9); }
-        }
-
+        /* NAVBAR HEADER FIXED - TRANSPARAN DI ATAS & BERUBAH BACKGROUND SAAT DI-SCROLL */
         navbar {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 8%;
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-card);
+            padding: 22px 8%;
+            background: transparent;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            border-bottom: 1px solid transparent;
+            box-shadow: none;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+        }
+
+        navbar.scrolled {
+            padding: 12px 8%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-card);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .logo {
             font-weight: 800;
             font-size: 1.3rem;
-            color: #fff;
+            color: var(--navy-deep);
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
@@ -120,8 +123,11 @@
             white-space: nowrap;
         }
 
-        .logo span {
-            color: var(--brand-red);
+        .img-header {
+            width: 200px;
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         .nav-links {
@@ -132,29 +138,29 @@
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--navy-deep);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: 0.3s;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-main);
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-accent);
         }
 
         .menu-toggle {
             display: none;
-            font-size: 1.5rem;
-            color: #fff;
             cursor: pointer;
             z-index: 1001;
+            padding: 5px;
+            color: var(--navy-deep);
         }
 
         section {
-            padding: 120px 8% 60px;
-            min-height: 100vh;
+            width: 100%;
+            padding: 100px 8% 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -166,12 +172,11 @@
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: var(--navy-deep);
             margin-bottom: 15px;
+            letter-spacing: -0.5px;
         }
 
         .section-header p {
@@ -181,29 +186,18 @@
             font-size: 1.05rem;
         }
 
-        .glass-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-card);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-                        0 0 20px rgba(59, 130, 246, 0.15);
-        }
-
+        /* --- HERO SECTION --- */
         .hero {
             position: relative;
             text-align: center;
             align-items: center;
             overflow: hidden;
-            padding: 140px 8% 100px;
+            min-height: 100vh;
+            padding: 140px 8% 80px;
+            display: flex;
+            justify-content: center;
+            background: #ffffff;
+            border-radius: 0 !important;
         }
 
         .hero-video-bg {
@@ -217,7 +211,7 @@
             z-index: 1;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            filter: brightness(0.6);
+            filter: brightness(0.95) contrast(1.05);
         }
 
         .hero-overlay {
@@ -227,48 +221,294 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            background: linear-gradient(
-                180deg, 
-                rgba(11, 15, 25, 0.4) 0%, 
-                rgba(11, 15, 25, 0.7) 70%, 
-                #0b0f19 100%
-            );
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(248, 250, 252, 0.6) 70%, #f8fafc 100%);
         }
 
         .hero-content {
             position: relative;
             z-index: 3;
+            width: 100%;
             max-width: 900px;
             margin: 0 auto;
         }
 
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 50px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            color: #60a5fa;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 25px;
+        .hero-subtitle-mobile {
+            display: none;
+        }
+
+        .hero-cta-btn {
+            display: none;
+        }
+
+        .scroll-indicator {
+            display: none;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 800;
             line-height: 1.15;
             margin-bottom: 25px;
-            background: linear-gradient(135deg, #ffffff 30%, #a5f3fc 70%, #60a5fa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--navy-deep);
         }
 
         .hero p {
             font-size: 1.15rem;
             color: var(--text-muted);
             max-width: 750px;
+            margin: 0 auto 30px;
+        }
+
+        /* SOSMED ICONS IN HERO & CARDS */
+        .hero-socials {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-socials a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--border-card);
+            color: var(--navy-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-socials a:hover {
+            background: var(--brand-red);
+            border-color: var(--brand-red);
+            color: #ffffff;
+            transform: translateY(-4px);
+        }
+
+        /* --- SEKSI SUARAKAN LAMPUNG --- */
+        .suarakan-section {
+            position: relative;
+            background-color: #ffffff;
+            color: var(--text-main);
+            padding: 90px 8% 80px;
             margin: 0 auto 40px;
+            width: 100%;
+            max-width: 1280px;
+            overflow: hidden;
+            border: 1px solid var(--border-card);
+            box-shadow: var(--shadow-subtle);
+            border-radius: 0 !important;
+        }
+
+        .suarakan-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .suarakan-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .suarakan-subtitle {
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--brand-red);
+            margin-bottom: 12px;
+        }
+
+        .suarakan-header-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            color: var(--navy-deep);
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.3;
+        }
+
+        .suarakan-main-heading {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 800;
+            color: #000000;
+            letter-spacing: -1.5px;
+            margin-bottom: 40px;
+        }
+
+        .suarakan-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 850px;
+            margin: 0 auto 50px;
+        }
+
+        .suarakan-intro-grid h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--navy-deep);
+            line-height: 1.4;
+        }
+
+        .suarakan-intro-grid p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .suarakan-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .lift-card {
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            border-radius: 0 !important;
+            padding: 35px 25px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .lift-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--brand-red);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .lift-card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--navy-deep);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: 0.3s;
+        }
+
+        .lift-card:hover .lift-card-icon {
+            background: var(--brand-red);
+        }
+
+        .lift-card-tag {
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--navy-deep);
+            margin-bottom: 12px;
+        }
+
+        .lift-card-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .lift-card-link {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lift-card:hover .lift-card-link {
+            color: var(--brand-red);
+        }
+
+        /* --- CARD PROFILE / EKOSISTEM / PROGRAM --- */
+        .profile-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .profile-card {
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            border-radius: 0 !important;
+            padding: 35px 25px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--brand-red);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .profile-avatar-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(220, 0, 0, 0.06);
+            border: 2px solid rgba(220, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            overflow: hidden;
+            color: var(--brand-red);
+        }
+
+        .profile-avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .profile-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--navy-deep);
+            margin-bottom: 8px;
+        }
+
+        .profile-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
         }
 
         .about-grid {
@@ -280,9 +520,9 @@
 
         .about-image-box {
             position: relative;
-            border-radius: 24px;
+            border-radius: 0 !important;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-subtle);
             border: 1px solid var(--border-card);
         }
 
@@ -290,18 +530,12 @@
             width: 100%;
             height: auto;
             display: block;
-            filter: brightness(0.9);
-            transition: 0.5s;
-        }
-
-        .about-image-box:hover img {
-            transform: scale(1.03);
         }
 
         .about-content h3 {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: #fff;
+            color: var(--navy-deep);
         }
 
         .about-content p {
@@ -310,53 +544,11 @@
         }
 
         .visi-box {
-            background: rgba(59, 130, 246, 0.08);
-            border-left: 4px solid var(--primary-accent);
+            background: rgba(220, 0, 0, 0.05);
+            border-left: 4px solid var(--brand-red);
             padding: 20px;
-            border-radius: 0 12px 12px 0;
+            border-radius: 0;
             margin-top: 25px;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .icon-box {
-            width: 60px;
-            height: 60px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #38bdf8;
-            margin-bottom: 20px;
-        }
-
-        .program-img-box {
-            margin: 15px 0;
-            text-align: center;
-        }
-
-        .program-img-box img {
-            max-width: 140px;
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
         }
 
         .keunggulan-container {
@@ -370,9 +562,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--navy-deep);
         }
 
         .keunggulan-left-header p {
@@ -383,10 +573,10 @@
 
         .keunggulan-image-box {
             position: relative;
-            border-radius: 20px;
+            border-radius: 0 !important;
             overflow: hidden;
             border: 1px solid var(--border-card);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: var(--shadow-subtle);
         }
 
         .keunggulan-image-box img {
@@ -394,11 +584,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .keunggulan-image-box:hover img {
-            transform: scale(1.04);
         }
 
         .keunggulan-grid {
@@ -407,12 +592,12 @@
             gap: 24px;
         }
 
+        /* GALLERY & SLIDER */
         .gallery-container {
             position: relative;
             width: 100%;
             max-width: 1000px;
             margin: 0 auto;
-            perspective: 1000px;
         }
 
         .gallery-slider {
@@ -421,18 +606,16 @@
             justify-content: center;
             align-items: center;
             min-height: 420px;
-            transform-style: preserve-3d;
+            transition: min-height 0.3s ease;
         }
 
         .gallery-slide {
             position: absolute;
             width: 100%;
             max-width: 750px;
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: #ffffff;
             border: 1px solid var(--border-card);
-            border-radius: 24px;
+            border-radius: 0 !important;
             padding: 30px;
             display: grid;
             grid-template-columns: 1fr 1.1fr;
@@ -440,42 +623,23 @@
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            transform: scale(0.8) translateZ(-200px);
-            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            transition: all 0.5s ease;
+            box-shadow: var(--shadow-subtle);
         }
 
         .gallery-slide.active {
             opacity: 1;
             visibility: visible;
-            transform: scale(1) translateZ(0);
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.2);
+            border-color: var(--brand-red);
+            box-shadow: var(--shadow-hover);
             z-index: 10;
-        }
-
-        .gallery-slide.prev {
-            opacity: 0.4;
-            visibility: visible;
-            transform: translateX(-40%) scale(0.85) translateZ(-100px);
-            z-index: 5;
-            cursor: pointer;
-        }
-
-        .gallery-slide.next {
-            opacity: 0.4;
-            visibility: visible;
-            transform: translateX(40%) scale(0.85) translateZ(-100px);
-            z-index: 5;
-            cursor: pointer;
         }
 
         .gallery-img-box {
             position: relative;
-            border-radius: 16px;
+            border-radius: 0 !important;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-card);
             height: 240px;
         }
 
@@ -483,20 +647,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .gallery-slide:hover .gallery-img-box img {
-            transform: scale(1.08);
         }
 
         .gallery-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(234, 179, 8, 0.1));
-            border: 1px solid rgba(245, 158, 11, 0.4);
-            color: #fbbf24;
+            background: rgba(220, 0, 0, 0.1);
+            border: 1px solid rgba(220, 0, 0, 0.3);
+            color: var(--brand-red);
             padding: 5px 14px;
             border-radius: 50px;
             font-size: 0.8rem;
@@ -507,7 +666,7 @@
         .gallery-info h3 {
             font-size: 1.3rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--navy-deep);
             margin-bottom: 10px;
             line-height: 1.3;
         }
@@ -524,45 +683,42 @@
             align-items: center;
             gap: 8px;
             font-size: 0.82rem;
-            color: #94a3b8;
+            color: var(--navy-deep);
             font-weight: 600;
         }
 
-        .gallery-org i {
-            color: var(--primary-accent);
+        .gallery-org svg {
+            color: var(--brand-red);
         }
 
         .gallery-controls {
-            position: relative;
-            z-index: 20;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 14px;
             margin-top: 25px;
+            position: relative;
+            z-index: 20;
         }
 
         .gallery-btn {
             width: 38px;
             height: 38px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
+            background: #ffffff;
             border: 1px solid var(--border-card);
-            color: #fff;
-            font-size: 0.95rem;
+            color: var(--navy-deep);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            transition: 0.3s;
         }
 
         .gallery-btn:hover {
-            background: var(--primary-accent);
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-            transform: scale(1.08);
+            background: var(--brand-red);
+            border-color: var(--brand-red);
+            color: #ffffff;
         }
 
         .gallery-dots {
@@ -575,32 +731,36 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
+            background: #cbd5e1;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: 0.3s;
         }
 
         .gallery-dot.active {
             width: 24px;
             height: 8px;
             border-radius: 10px;
-            background: var(--primary-accent);
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+            background: var(--brand-red);
         }
 
-        .clients-wrapper {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 24px;
-            padding: 40px;
-            border: 1px solid var(--border-card);
+        .clients-clean-wrapper {
             text-align: center;
+            padding: 20px 0;
+        }
+
+        .clients-clean-wrapper img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
 
         footer {
-            background: rgba(6, 9, 17, 0.9);
+            background: #ffffff;
             border-top: 1px solid var(--border-card);
             padding: 60px 8% 30px;
             margin-top: 60px;
+            width: 100%;
         }
 
         .footer-grid {
@@ -613,6 +773,7 @@
         .footer-info h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
+            color: var(--navy-deep);
         }
 
         .footer-info p {
@@ -624,7 +785,7 @@
         .footer-links h4 {
             font-size: 1.05rem;
             margin-bottom: 18px;
-            color: #fff;
+            color: var(--navy-deep);
         }
 
         .footer-links ul {
@@ -634,6 +795,10 @@
         .footer-links li {
             margin-bottom: 10px;
             font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .footer-links a {
@@ -643,21 +808,21 @@
         }
 
         .footer-links a:hover {
-            color: var(--primary-accent);
+            color: var(--brand-red);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--border-card);
             color: var(--text-muted);
             font-size: 0.85rem;
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
 
         .reveal.active {
@@ -665,99 +830,286 @@
             transform: translateY(0);
         }
 
-        /* --- RESPONSIVE MEDIA QUERIES --- */
-        @media (max-width: 1024px) {
-            navbar {
-                padding: 15px 5%;
-            }
-            section {
-                padding: 100px 5% 50px;
-            }
-            .keunggulan-container {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        .ig-carousel-section {
+            width: 100%;
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 8%;
         }
 
-        @media (max-width: 868px) {
+        .ig-carousel-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .ig-card {
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            border-radius: 0 !important;
+            padding: 24px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-subtle);
+            text-decoration: none;
+        }
+
+        .ig-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--brand-red);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .ig-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 2px solid var(--border-card);
+            padding: 2px;
+            background: #ffffff;
+            transition: 0.3s;
+        }
+
+        .ig-card:hover .ig-avatar {
+            border-color: var(--brand-red);
+        }
+
+        .ig-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .ig-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--navy-deep);
+            margin-bottom: 4px;
+        }
+
+        .ig-handle {
+            font-size: 0.82rem;
+            color: var(--brand-red);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .ig-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .ig-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(220, 0, 0, 0.08);
+            color: var(--brand-red);
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .ig-card:hover .ig-btn {
+            background: var(--brand-red);
+            color: #ffffff;
+        }
+
+        /* --- PENYESUAIAN MOBILE RESPONSIF --- */
+        @media screen and (max-width: 768px) {
+            navbar {
+                padding: 15px 20px;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border-bottom: 1px solid transparent !important;
+                box-shadow: none !important;
+            }
+
+            navbar.scrolled {
+                padding: 12px 20px;
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(12px) !important;
+                -webkit-backdrop-filter: blur(12px) !important;
+                border-bottom: 1px solid var(--border-card) !important;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+            }
+
+            .img-header {
+                width: 140px;
+            }
+
             .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 38px;
+                height: 38px;
+                background: transparent;
+                border: none;
+                color: var(--navy-deep) !important;
+            }
+
+            /* HERO MOBILE RESPONSIF BACKGROUND PUTIH & BORDER RADIUS 0 */
+            .hero {
                 display: block;
+                padding: 0;
+                min-height: auto;
+                background: #ffffff !important;
+                border-radius: 0 !important;
+                border-bottom: 1px solid var(--border-card);
+            }
+
+            .hero-video-bg {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100%;
+                height: 240px;
+                object-fit: cover;
+                display: block;
+            }
+
+            .hero-overlay {
+                display: none;
+            }
+
+            .hero-content {
+                background: #ffffff !important;
+                padding: 35px 20px 45px;
+                border-radius: 0 !important;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero-subtitle-mobile {
+                display: block;
+                color: var(--brand-red);
+                font-size: 0.8rem;
+                font-weight: 800;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                margin-bottom: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                font-weight: 800;
+                color: var(--navy-deep) !important;
+                margin-bottom: 25px;
+                line-height: 1.25;
+            }
+
+            .hero p {
+                display: none;
+            }
+
+            .hero-cta-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                background: var(--brand-red);
+                color: #ffffff;
+                padding: 14px 28px;
+                border-radius: 30px;
+                font-size: 0.85rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-decoration: none;
+                margin-bottom: 35px;
+                box-shadow: 0 8px 20px rgba(220, 0, 0, 0.25);
+            }
+
+            .scroll-indicator {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 42px;
+                height: 42px;
+                border-radius: 50%;
+                border: 1px solid var(--border-card);
+                color: var(--navy-deep);
             }
 
             .nav-links {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 75%;
-                max-width: 300px;
+                width: 80%;
+                max-width: 320px;
                 height: 100vh;
-                background: rgba(11, 15, 25, 0.98);
-                backdrop-filter: blur(20px);
+                background: #ffffff;
                 flex-direction: column;
-                justify-content: center;
-                gap: 20px;
-                padding: 40px 20px;
-                transition: 0.4s ease-in-out;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 0;
+                padding: 90px 24px 30px;
+                transition: all 0.4s ease;
                 border-left: 1px solid var(--border-card);
-                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
             }
 
             .nav-links.active {
                 right: 0;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid var(--border-card);
             }
 
-            .hero p {
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 16px 8px;
                 font-size: 1rem;
+                font-weight: 600;
+                color: var(--navy-deep);
             }
 
-            .about-grid {
-                grid-template-columns: 1fr;
+            section {
+                padding: 60px 5% 30px;
             }
 
-            .keunggulan-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .suarakan-intro-grid,
+            .suarakan-cards-grid,
+            .about-grid,
+            .keunggulan-container,
+            .keunggulan-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
             }
 
-            /* Responsive Gallery Slider */
-            .gallery-container {
-                perspective: none;
-            }
-
+            /* PENYESUAIAN KHUSUS MOBILE UNTUK GALLERY SLIDER */
             .gallery-slider {
-                min-height: auto;
-                position: relative;
+                min-height: 520px;
+                align-items: flex-start;
             }
 
             .gallery-slide {
-                position: relative;
                 grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 20px;
-                border-radius: 20px;
-                transform: none !important;
-                display: none;
-                box-shadow: none;
-            }
-
-            .gallery-slide.active {
-                display: grid;
-                transform: none !important;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            }
-
-            .gallery-slide.prev, .gallery-slide.next { 
-                display: none; 
+                gap: 15px;
+                padding: 18px;
+                top: 0;
             }
 
             .gallery-img-box {
@@ -765,51 +1117,58 @@
             }
 
             .gallery-info h3 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .gallery-info p {
-                font-size: 0.88rem;
-                margin-bottom: 12px;
+                font-size: 0.85rem;
+                margin-bottom: 10px;
             }
-        }
 
-        @media (max-width: 480px) {
-            .section-header h2 {
-                font-size: 1.8rem;
+            .gallery-controls {
+                margin-top: 15px;
             }
-            .hero h1 {
-                font-size: 2rem;
+
+            .ig-carousel-section {
+                padding: 0 5%;
             }
-            .glass-card {
-                padding: 20px;
+
+            .ig-carousel-container {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 15px;
+                padding-bottom: 15px;
+                -webkit-overflow-scrolling: touch;
             }
-            .clients-wrapper {
-                padding: 20px 10px;
+
+            .ig-card {
+                flex: 0 0 82%;
+                scroll-snap-align: center;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="background-gradient">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
-    </div>
+    <div class="background-gradient"></div>
 
-    <navbar>
+    <navbar id="mainNavbar">
         <div class="logo">
-            PT MASA KINI MANDIRI <span>.</span>
+            <img src="asset/epaper.webp" alt="Lampung Post" class="img-header">
         </div>
         <div class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars"></i>
+            <!-- HAMBURGER SVG -->
+            <svg id="menuIcon" class="svg-icon-lg" viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+            </svg>
         </div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="active">Beranda</a></li>
             <li><a href="tentang.html">Tentang Kami</a></li>
             <li><a href="video.html">Video</a></li>
-            <li><a href="mitra.html">mitra</a></li>
+            <li><a href="mitra.html">Mitra</a></li>
             <li><a href="hubungi-kami.html">Hubungi</a></li>
             <li><a href="media-kami.html">Media Kami</a></li>
         </ul>
@@ -817,17 +1176,125 @@
 
     <section id="beranda" class="hero reveal">
         <video autoplay loop muted playsinline class="hero-video-bg">
-            <source src="asset/vidio.mp4" type="video/mp4">
+            <source src="asset/tes.mp4" type="video/mp4">
         </video>
 
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Media Multiplatform Terdepan</div>
+            <div class="hero-subtitle-mobile">SUARAKAN POTENSI INDONESIA</div>
             <h1>PT. Masa Kini Mandiri</h1>
-            <p>Bagian dari Media Group Network. Kami bertransformasi dari koran cetak menjadi institusi media multiplatform yang menjadi rujukan utama informasi di Sang Bumi Ruwa Jurai sejak 10 Agustus 1974.</p>
+            <a href="tentang.html" class="hero-cta-btn">LEARN MORE ABOUT US <svg class="svg-icon" viewBox="0 0 24 24">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                </svg></a>
+            <div class="scroll-indicator">
+                <svg class="svg-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M13 1.07V9h7c0-4.08-3.05-7.44-7-7.93zM4 15c0 4.42 3.58 8 8 8s8-3.58 8-8v-4H4v4zm7-13.93C7.05 1.56 4 4.92 4 9h7V1.07z" />
+                </svg>
+            </div>
         </div>
     </section>
+
+    <div class="suarakan-section reveal">
+        <div class="suarakan-content">
+            <div class="suarakan-subtitle">DISCOVER LAMPUNG POST GROUP</div>
+            <h2 class="suarakan-header-title">Media terpercaya yang telah menemani warga Sang Bumi Ruwa Jurai dengan
+                berita-berita terkini</h2>
+            <h1 class="suarakan-main-heading">Suarakan Lampung</h1>
+
+            <div class="suarakan-intro-grid">
+                <h3>Kami hadir di banyak platform untuk menjangkau seluruh pemirsa</h3>
+                <p>Pengunjung dan pembaca kami terus bertambah dari waktu ke waktu. Membuktikan bahwa Lampung Post Group
+                    dipercaya oleh masyarakat Lampung maupun nasional.</p>
+            </div>
+
+            <div class="suarakan-cards-grid">
+                <div class="lift-card" onclick="window.location.href='media.html'">
+                    <div class="lift-card-icon">
+                        <!-- LAPTOP SVG -->
+                        <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                            <path
+                                d="M20 18c1.1 0 1.99-.9 1.99-2L22 5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2H0c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2h-4zM4 5h16v11H4V5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lift-card-tag">NEWS PORTAL</div>
+                        <p class="lift-card-desc">Media online yang menyajikan berita terbaru, opini tokoh, dan
+                            informasi aktual teruji 24 jam.</p>
+                    </div>
+                    <a href="https://lampost.co/" class="lift-card-link">LAMPOST.CO <svg class="svg-icon"
+                            viewBox="0 0 24 24">
+                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                        </svg></a>
+                </div>
+
+                <div class="lift-card" onclick="window.location.href='media.html'">
+                    <div class="lift-card-icon">
+                        <!-- SHARE SVG -->
+                        <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                            <path
+                                d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lift-card-tag">SOCIAL MEDIA</div>
+                        <p class="lift-card-desc">Sosial media dengan ratusan ribu pengikut aktif yang dapat membantu
+                            memajukan brand Anda.</p>
+                    </div>
+                    <div class="hero-socials">
+                        <a href="https://www.instagram.com/lampungpostupdate/" target="_blank" title="Instagram">
+                            <!-- INSTAGRAM SVG -->
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://x.com/lampungpost_" target="_blank" title="X (Twitter)">
+                            <!-- TWITTER/X SVG -->
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@lampungpost" target="_blank" title="TikTok">
+                            <!-- TIKTOK SVG -->
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/lampungpostupdate" target="_blank" title="Facebook">
+                            <!-- FACEBOOK SVG -->
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lift-card" onclick="window.location.href='video.html'">
+                    <div class="lift-card-icon">
+                        <!-- PLAY SVG -->
+                        <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lift-card-tag">VIDEO PROGRAM</div>
+                        <p class="lift-card-desc">Kami menghadirkan tontonan audio visual interaktif untuk menambah
+                            wawasan dan pengetahuan Anda.</p>
+                    </div>
+                    <a href="https://www.youtube.com/@lampungpostupdate" class="lift-card-link">TONTON VIDEO <svg
+                            class="svg-icon" viewBox="0 0 24 24">
+                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section id="tentang">
         <div class="about-grid">
@@ -839,50 +1306,177 @@
                     <h2>Tentang Kami</h2>
                 </div>
                 <h3>Sejarah & Transformasi</h3>
-                <p>Berdiri sejak 10 Agustus 1974, Lampung Post memiliki rekam jejak panjang dalam menyajikan berita berkualitas. Kini, kami berkembang menjadi <b>One Stop Media Solution</b> yang mencakup portal berita online, koran digital, video streaming, radio, hingga event organizer.</p>
+                <p>Berdiri sejak 10 Agustus 1974, Lampung Post memiliki rekam jejak panjang dalam menyajikan berita
+                    berkualitas. Kini, kami berkembang menjadi <b>One Stop Media Solution</b> yang mencakup portal
+                    berita online, koran digital, video streaming, radio, hingga event organizer.</p>
                 <div class="visi-box">
-                    <h4 style="color: #fff; margin-bottom: 5px;">Visi Kami</h4>
-                    <p style="margin: 0; font-size: 0.95rem;">Menjadi "Jendela Informasi Lampung" dan referensi utama masyarakat dengan menyajikan berita yang cepat, jujur, akurat, dan bermutu.</p>
+                    <h4 style="color: var(--navy-deep); margin-bottom: 5px;">Visi Kami</h4>
+                    <p style="margin: 0; font-size: 0.95rem;">Menjadi "Jendela Informasi Lampung" dan referensi utama
+                        masyarakat dengan menyajikan berita yang cepat, jujur, akurat, dan bermutu.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="ig-carousel-section reveal">
+        <div class="section-header" style="margin-bottom: 30px;">
+            <h2>Official Instagram Network</h2>
+            <p>Ikuti akun-akun resmi Lampung Post Group untuk mendapatkan berita dan konten terbaru langsung di feed
+                Anda.</p>
+        </div>
+
+        <div class="ig-carousel-container">
+            <!-- CARD 1 -->
+            <a href="https://www.instagram.com/lampungpostotomotif/" target="_blank" class="ig-card">
+                <div class="ig-avatar">
+                    <img src="asset/logo-ig/otomotif.jpg" alt="Lampung Post">
+                </div>
+                <div>
+                    <div class="ig-name">lampungpostotomotif</div>
+                    <div class="ig-handle">@lampungpostotomotif</div>
+                    <p class="ig-desc">Official Otomotif
+                        Info Terlengkap Mobil, Motor & Komunitas.</p>
+                </div>
+                <div class="ig-btn">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                    Follow
+                </div>
+            </a>
+
+            <!-- CARD 2 -->
+            <a href="https://www.instagram.com/lampungpostlifestyle/" target="_blank" class="ig-card">
+                <div class="ig-avatar">
+                    <img src="asset/logo-ig/lifestyle.jpg" alt="SAI 100 FM">
+                </div>
+                <div>
+                    <div class="ig-name">lampungpostlifestyle</div>
+                    <div class="ig-handle">@lampungpostlifestyle</div>
+                    <p class="ig-desc">Lampung Post Lifestyle
+                        Jelajah - Rasakan - Ceritakan.</p>
+                </div>
+                <div class="ig-btn">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                    Follow
+                </div>
+            </a>
+
+            <!-- CARD 3 -->
+            <a href="https://www.instagram.com/lampungpostproperty/" target="_blank" class="ig-card">
+                <div class="ig-avatar">
+                    <img src="asset/logo-ig/property.jpg" alt="Lampost EO">
+                </div>
+                <div>
+                    <div class="ig-name">lampungpostproperty</div>
+                    <div class="ig-handle">@lampungpostproperty</div>
+                    <p class="ig-desc">Info Property Lampung.
+                    </p>
+                </div>
+                <div class="ig-btn">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                    Follow
+                </div>
+            </a>
+
+            <!-- CARD 4 -->
+            <a href="https://www.instagram.com/lampungpostupdate/" target="_blank" class="ig-card">
+                <div class="ig-avatar">
+                    <img src="asset/logo-ig/lampungpostupdate.jpg" alt="Lampost Official">
+                </div>
+                <div>
+                    <div class="ig-name">lampungpostupdate</div>
+                    <div class="ig-handle">@lampungpostupdate</div>
+                    <p class="ig-desc">Part of Media Group Network.</p>
+                </div>
+                <div class="ig-btn">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                    Follow
+                </div>
+            </a>
+        </div>
+    </div>
 
     <section id="ekosistem">
         <div class="section-header reveal">
             <h2>Ekosistem Bisnis</h2>
             <p>Layanan terintegrasi kami untuk menjangkau pemirsa dari berbagai segmen dan platform.</p>
         </div>
-        <div class="grid-3">
-            <div class="glass-card reveal">
-                <div class="icon-box"><i class="fa-solid fa-globe"></i></div>
-                <div class="card-title">Portal Berita Online</div>
-                <div class="card-desc"><b>LAMPOST.CO</b> - Portal berita nomor satu di Provinsi Lampung menyajikan berita terkini 24/7.</div>
+        <div class="profile-card-grid">
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                    </svg>
+                </div>
+                <div class="profile-title">Portal Berita Online</div>
+                <div class="profile-desc"><b>LAMPOST.CO</b> - Portal berita nomor satu di Provinsi Lampung menyajikan
+                    berita terkini 24/7.</div>
             </div>
-            <div class="glass-card reveal">
-                <div class="icon-box"><i class="fa-solid fa-tower-cell"></i></div>
-                <div class="card-title">Broadcast</div>
-                <div class="card-desc">Lampung Post Update (YouTube Channel) menyajikan berita visual dan tayangan program informatif.</div>
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm0-4h-2V7h2v5z" />
+                    </svg>
+                </div>
+                <div class="profile-title">Broadcast</div>
+                <div class="profile-desc">Lampung Post Update (YouTube Channel) menyajikan berita visual dan tayangan
+                    program informatif.</div>
             </div>
-            <div class="glass-card reveal">
-                <div class="icon-box"><i class="fa-solid fa-newspaper"></i></div>
-                <div class="card-title">Digital (E-Paper)</div>
-                <div class="card-desc">Koran digital Lampung Post teruji & tepercaya yang praktis diakses dari mana saja.</div>
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                    </svg>
+                </div>
+                <div class="profile-title">Digital (E-Paper)</div>
+                <div class="profile-desc">Koran digital Lampung Post teruji & tepercaya yang praktis diakses dari mana
+                    saja.</div>
             </div>
-            <div class="glass-card reveal">
-                <div class="icon-box"><i class="fa-solid fa-radio"></i></div>
-                <div class="card-title">Radio SAI 100FM</div>
-                <div class="card-desc">Mengusung konsep anak muda kreatif, energik, dan musik pop/jazz pilihan.</div>
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path
+                            d="M3.24 6.15C2.51 6.43 2 7.17 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2H8.3l8.26-3.34L15.8 1 3.24 6.15zM12 18c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
+                    </svg>
+                </div>
+                <div class="profile-title">Radio SAI 100FM</div>
+                <div class="profile-desc">Mengusung konsep anak muda kreatif, energik, dan musik pop/jazz pilihan.</div>
             </div>
-            <div class="glass-card reveal">
-                <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
-                <div class="card-title">Publishing</div>
-                <div class="card-desc">Jasa cetak penerbitan koran, tabloid, buku melalui layanan One Stop Publishing.</div>
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path
+                            d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
+                    </svg>
+                </div>
+                <div class="profile-title">Publishing</div>
+                <div class="profile-desc">Jasa cetak penerbitan koran, tabloid, buku melalui layanan One Stop
+                    Publishing.</div>
             </div>
-            <div class="glass-card reveal">
-                <div class="icon-box"><i class="fa-solid fa-calendar-check"></i></div>
-                <div class="card-title">Event Organizer</div>
-                <div class="card-desc">Penyelenggara acara profesional untuk instansi pemerintah, BUMN, swasta, dan komunitas.</div>
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path
+                            d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                    </svg>
+                </div>
+                <div class="profile-title">Event Organizer</div>
+                <div class="profile-desc">Penyelenggara acara profesional untuk instansi pemerintah, BUMN, swasta, dan
+                    komunitas.</div>
             </div>
         </div>
     </section>
@@ -892,43 +1486,59 @@
             <h2>Program Unggulan</h2>
             <p>Program konten eksklusif dan interaktif yang menginspirasi serta menyajikan informasi mendalam.</p>
         </div>
-        <div class="grid-3">
-            <div class="glass-card reveal">
-                <div class="card-title" style="color:#60a5fa;">Bung Is Menyapa</div>
-                <div class="program-img-box">
+        <div class="profile-card-grid">
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
                     <img src="logo/bungis.webp" alt="Bung Is Menyapa">
                 </div>
-                <div class="card-desc">Cerita di balik kesuksesan tokoh & kontribusi membangun Lampung bersama Host Iskandar Zulkarnain.</div>
+                <div class="profile-title">Bung Is Menyapa</div>
+                <div class="profile-desc">Cerita di balik kesuksesan tokoh & kontribusi membangun Lampung bersama Host
+                    Iskandar Zulkarnain.</div>
             </div>
-            <div class="glass-card reveal">
-                <div class="card-title" style="color:#f43f5e;">Dialog Spesial</div>
-                <div class="program-img-box">
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
                     <img src="logo/dialog.webp" alt="Dialog Spesial">
                 </div>
-                <div class="card-desc">Talkshow mendalam bersama narasumber pilihan yang menginspirasi dipandu Abdul Gofur.</div>
+                <div class="profile-title">Dialog Spesial</div>
+                <div class="profile-desc">Talkshow mendalam bersama narasumber pilihan yang menginspirasi dipandu Abdul
+                    Gofur.</div>
             </div>
-            <div class="glass-card reveal">
-                <div class="card-title" style="color:#38bdf8;">Economic Corner</div>
-                <div class="card-desc">Informasi ekonomi dan bisnis terkini dengan pendekatan jurnalistik yang mendalam.</div>
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" />
+                    </svg>
+                </div>
+                <div class="profile-title">Economic Corner</div>
+                <div class="profile-desc">Informasi ekonomi dan bisnis terkini dengan pendekatan jurnalistik yang
+                    mendalam.</div>
             </div>
-            <div class="glass-card reveal">
-                <div class="card-title" style="color:#f59e0b;">Berburu Cuan</div>
-                <div class="program-img-box">
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
                     <img src="logo/berburucuan.webp" alt="Berburu Cuan">
                 </div>
-                <div class="card-desc">Podcast membahas kisah sukses pengusaha UMKM & industri untuk menginspirasi milenial.</div>
+                <div class="profile-title">Berburu Cuan</div>
+                <div class="profile-desc">Podcast membahas kisah sukses pengusaha UMKM & industri untuk menginspirasi
+                    milenial.</div>
             </div>
-            <div class="glass-card reveal">
-                <div class="card-title" style="color:#ec4899;">Curhat Mak</div>
-                <div class="card-desc">Bincang santai penuh inspirasi dari sudut pandang perempuan dan sosok ibu.</div>
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path
+                            d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
+                    </svg>
+                </div>
+                <div class="profile-title">Curhat Mak</div>
+                <div class="profile-desc">Bincang santai penuh inspirasi dari sudut pandang perempuan dan sosok ibu.
+                </div>
             </div>
-            <div class="glass-card reveal">
-                <div class="card-title" style="color:#10b981;">Ayo Sehat</div>
-                <center>
-                    <div class="program-img-box">
-                        <img src="logo/ayosehat.jpg" alt="Ayo Sehat">
-                    </div>
-                <div class="card-desc">Podcast kesehatan menghadirkan tips dan wawasan langsung bersama para pakar di bidangnya.</div>
+            <div class="profile-card reveal">
+                <div class="profile-avatar-box">
+                    <img src="logo/ayosehat.jpg" alt="Ayo Sehat">
+                </div>
+                <div class="profile-title">Ayo Sehat</div>
+                <div class="profile-desc">Podcast kesehatan menghadirkan tips dan wawasan langsung bersama para pakar di
+                    bidangnya.</div>
             </div>
         </div>
     </section>
@@ -945,25 +1555,49 @@
                 </div>
             </div>
             <div class="keunggulan-grid">
-                <div class="glass-card reveal">
-                    <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="card-title">Kredibilitas Jurnalistik</div>
-                    <div class="card-desc">Kami memegang teguh etika jurnalistik yang ketat, menjadikan kami penangkal berita bohong (hoax) yang efektif di Lampung.</div>
+                <div class="profile-card reveal" style="text-align: left; align-items: flex-start;">
+                    <div class="profile-avatar-box" style="margin-bottom: 15px;">
+                        <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                            <path
+                                d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8s0 0 0 0z" />
+                        </svg>
+                    </div>
+                    <div class="profile-title">Kredibilitas Jurnalistik</div>
+                    <div class="profile-desc">Kami memegang teguh etika jurnalistik yang ketat, menjadikan kami
+                        penangkal berita bohong (hoax) yang efektif di Lampung.</div>
                 </div>
-                <div class="glass-card reveal">
-                    <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
-                    <div class="card-title">Konvergensi Media (One Stop Solution)</div>
-                    <div class="card-desc">Keuntungan "Satu Pintu" bagi pengiklan. Promosi Anda dapat muncul serentak di koran, portal berita, radio, dan media sosial.</div>
+                <div class="profile-card reveal" style="text-align: left; align-items: flex-start;">
+                    <div class="profile-avatar-box" style="margin-bottom: 15px;">
+                        <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                            <path
+                                d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27-7.38 5.74zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z" />
+                        </svg>
+                    </div>
+                    <div class="profile-title">Konvergensi Media</div>
+                    <div class="profile-desc">Keuntungan "Satu Pintu" bagi pengiklan. Promosi Anda dapat muncul serentak
+                        di koran, portal berita, radio, dan media sosial.</div>
                 </div>
-                <div class="glass-card reveal">
-                    <div class="icon-box"><i class="fa-solid fa-bullseye"></i></div>
-                    <div class="card-title">Jangkauan Luas & Tepat Sasaran</div>
-                    <div class="card-desc">Distribusi cetak mencakup seluruh kabupaten/kota di Lampung, sementara platform digital menjangkau pembaca nasional hingga diaspora di luar negeri.</div>
+                <div class="profile-card reveal" style="text-align: left; align-items: flex-start;">
+                    <div class="profile-avatar-box" style="margin-bottom: 15px;">
+                        <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                        </svg>
+                    </div>
+                    <div class="profile-title">Jangkauan Luas</div>
+                    <div class="profile-desc">Distribusi cetak mencakup seluruh kabupaten/kota di Lampung, sementara
+                        platform digital menjangkau pembaca nasional.</div>
                 </div>
-                <div class="glass-card reveal">
-                    <div class="icon-box"><i class="fa-solid fa-handshake"></i></div>
-                    <div class="card-title">Mitra Strategis Tepercaya</div>
-                    <div class="card-desc">Dipercaya oleh berbagai instansi pemerintah dan swasta untuk publikasi kebijakan, lelang, dan branding.</div>
+                <div class="profile-card reveal" style="text-align: left; align-items: flex-start;">
+                    <div class="profile-avatar-box" style="margin-bottom: 15px;">
+                        <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                            <path
+                                d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                        </svg>
+                    </div>
+                    <div class="profile-title">Mitra Strategis Tepercaya</div>
+                    <div class="profile-desc">Dipercaya oleh berbagai instansi pemerintah dan swasta untuk publikasi
+                        kebijakan, lelang, dan branding.</div>
                 </div>
             </div>
         </div>
@@ -972,21 +1606,28 @@
     <section id="penghargaan">
         <div class="section-header reveal">
             <h2>Penghargaan & Sertifikasi</h2>
-            <p>Bukti komitmen dan dedikasi kami dalam menyajikan jurnalisme berkualitas tinggi serta standar layanan media nasional.</p>
+            <p>Bukti komitmen dan dedikasi kami dalam menyajikan jurnalisme berkualitas tinggi serta standar layanan
+                media nasional.</p>
         </div>
-        
+
         <div class="gallery-container reveal">
             <div class="gallery-slider" id="gallerySlider">
-                
-                <div class="gallery-slide">
+
+                <div class="gallery-slide active">
                     <div class="gallery-img-box">
                         <img src="asset/bayangkara.webp" alt="Sertifikat Dewan Pers">
                     </div>
                     <div class="gallery-info">
-                        <div class="gallery-badge"><i class="fa-solid fa-award"></i> Verified Media</div>
+                        <div class="gallery-badge"><svg class="svg-icon" viewBox="0 0 24 24">
+                                <path d="M12 2L1 21h22L12 2zm0 3.45l8.1 14.1H3.9L12 5.45zM11 10h2v4h-2zm0 6h2v2h-2z" />
+                            </svg> Verified Media</div>
                         <h3>Lampung Post Terima Penghargaan di Hari Bhayangkara ke-79 Polres Way Kanan.</h3>
-                        <p>Lampung Post terima penghargaan dalam peringatan Hari Bhayangkara ke-79, dari Mapolres Way Kanan.</p>
-                        <div class="gallery-org"><i class="fa-solid fa-circle-check"></i> Mapolres Way Kanan</div>
+                        <p>Lampung Post terima penghargaan dalam peringatan Hari Bhayangkara ke-79, dari Mapolres Way
+                            Kanan.</p>
+                        <div class="gallery-org"><svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg> Mapolres Way Kanan</div>
                     </div>
                 </div>
 
@@ -995,10 +1636,17 @@
                         <img src="asset/lpef2.webp" alt="IPMA Award">
                     </div>
                     <div class="gallery-info">
-                        <div class="gallery-badge"><i class="fa-solid fa-trophy"></i> LAMPUNG POST EXECUTIVE FORUM</div>
+                        <div class="gallery-badge"><svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z" />
+                            </svg> LAMPUNG POST EXECUTIVE FORUM</div>
                         <h3>Komisi V DPRD Lampung Dorong Pembenahan Mutu Pendidikan dan Kesejahteraan Guru Honorer</h3>
-                        <p>Ketua Komisi V DPRD Lampung Yanuar Irawan menyoroti ironi kesejahteraan guru honorer dan pentingnya peran PTS dalam mendongkrak APK pendidikan tinggi.</p>
-                        <div class="gallery-org"><i class="fa-solid fa-circle-check"></i> Serikat Perusahaan Pers (SPS)</div>
+                        <p>Ketua Komisi V DPRD Lampung Yanuar Irawan menyoroti ironi kesejahteraan guru honorer dan
+                            pentingnya peran PTS dalam mendongkrak APK pendidikan tinggi.</p>
+                        <div class="gallery-org"><svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg> Serikat Perusahaan Pers (SPS)</div>
                     </div>
                 </div>
 
@@ -1007,19 +1655,33 @@
                         <img src="asset/lpef1.webp" alt="Penghargaan Kemitraan">
                     </div>
                     <div class="gallery-info">
-                        <div class="gallery-badge"><i class="fa-solid fa-star"></i> LAMPUNG POST EXECUTIVE FORUM</div>
-                        <h3>Pemprov Lampung Terima Penghargaan Pelopor Swasembada Pangan dan Transformasi Ekonomi Nasional</h3>
-                        <p>Gubernur Lampung, Rahmad Mirzani Djausal menerima penghargaan Lampung Post Award "Asta Cita Bersama Lampung Maju".</p>
-                        <div class="gallery-org"><i class="fa-solid fa-circle-check"></i> Pemerintah Daerah & Instansi Terkait</div>
+                        <div class="gallery-badge"><svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg> LAMPUNG POST EXECUTIVE FORUM</div>
+                        <h3>Pemprov Lampung Terima Penghargaan Pelopor Swasembada Pangan dan Transformasi Ekonomi
+                            Nasional</h3>
+                        <p>Gubernur Lampung, Rahmad Mirzani Djausal menerima penghargaan Lampung Post Award "Asta Cita
+                            Bersama Lampung Maju".</p>
+                        <div class="gallery-org"><svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg> Pemerintah Daerah & Instansi Terkait</div>
                     </div>
                 </div>
 
             </div>
 
             <div class="gallery-controls">
-                <button class="gallery-btn" id="prevBtn"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="gallery-btn" id="prevBtn" aria-label="Slide Sebelumnya"><svg class="svg-icon"
+                        viewBox="0 0 24 24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg></button>
                 <div class="gallery-dots" id="galleryDots"></div>
-                <button class="gallery-btn" id="nextBtn"><i class="fa-solid fa-arrow-right"></i></button>
+                <button class="gallery-btn" id="nextBtn" aria-label="Slide Selanjutnya"><svg class="svg-icon"
+                        viewBox="0 0 24 24">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                    </svg></button>
             </div>
         </div>
     </section>
@@ -1027,10 +1689,11 @@
     <section id="mitra">
         <div class="section-header reveal">
             <h2>Klien & Mitra Kami</h2>
-            <p>Bangga dipercaya oleh berbagai mitra strategis, mulai dari Pemerintah Daerah, BUMN, Universitas, hingga Swasta Nasional.</p>
+            <p>Bangga dipercaya oleh berbagai mitra strategis, mulai dari Pemerintah Daerah, BUMN, Universitas, hingga
+                Swasta Nasional.</p>
         </div>
-        <div class="clients-wrapper reveal">
-            <img src="asset/mitra.png" alt="Mitra Lampung Post" style="max-width: 100%; height: auto;">
+        <div class="clients-clean-wrapper reveal">
+            <img src="asset/mitra.png" alt="Mitra Lampung Post">
         </div>
     </section>
 
@@ -1043,9 +1706,18 @@
             <div class="footer-links">
                 <h4>Kontak Kami</h4>
                 <ul>
-                    <li><i class="fa-solid fa-envelope"></i> marcomm@lampost.co</li>
-                    <li><i class="fa-solid fa-phone"></i> T. 0721 783693 / F. 0721 773888</li>
-                    <li><i class="fa-solid fa-location-dot"></i> Jalan Soekarno - Hatta No. 108 Hajimena, Rajabasa, Lampung 35142</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg> marcomm@lampost.co</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                        </svg> T. 0721 783693 / F. 0721 773888</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg> Jalan Soekarno - Hatta No. 108 Hajimena, Rajabasa, Lampung 35142</li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -1064,36 +1736,43 @@
     </footer>
 
     <script>
-        // Toggle Navigation Bar Mobile
+        const mainNavbar = document.getElementById('mainNavbar');
+
+        // FUNGSI CEK SCROLL UNTUK EFEK NAVBAR TRANSPARAN -> BACKROUND PUTIH
+        function checkScroll() {
+            if (window.scrollY > 30) {
+                mainNavbar.classList.add('scrolled');
+            } else {
+                mainNavbar.classList.remove('scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
+        const menuIcon = document.getElementById('menuIcon');
 
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
             if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
+                // ICON CLOSE (X)
+                menuIcon.innerHTML = '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>';
             } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
+                // ICON HAMBURGER
+                menuIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
             }
         });
 
-        // Close navbar menu when clicking link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
-                }
+                menuIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
             });
         });
 
-        // Scroll Observer for Animations
-        const observerOptions = { threshold: 0.15 };
+        const observerOptions = {threshold: 0.1};
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1104,30 +1783,15 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Glass Card Hover Effect (Mousemove)
-        document.querySelectorAll('.glass-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                if (window.innerWidth > 768) {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    card.style.transform = `translateY(-8px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg)`;
-                }
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `translateY(0) rotateX(0deg) rotateY(0deg)`;
-            });
-        });
-
-        // Slider Gallery Script
+        // SLIDER PENGHARGAAN SCRIPT WITH TOUCH SWIPE & DYNAMIC HEIGHT
+        const sliderContainer = document.getElementById('gallerySlider');
         const slides = document.querySelectorAll('.gallery-slide');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const dotsContainer = document.getElementById('galleryDots');
         let currentSlide = 0;
-        let autoSlideTimer;
 
+        dotsContainer.innerHTML = '';
         slides.forEach((_, idx) => {
             const dot = document.createElement('div');
             dot.classList.add('gallery-dot');
@@ -1140,14 +1804,14 @@
 
         function updateSlider() {
             slides.forEach((slide, idx) => {
-                slide.classList.remove('active', 'prev', 'next');
-                
+                slide.classList.remove('active');
                 if (idx === currentSlide) {
                     slide.classList.add('active');
-                } else if (idx === (currentSlide - 1 + slides.length) % slides.length) {
-                    slide.classList.add('prev');
-                } else if (idx === (currentSlide + 1) % slides.length) {
-                    slide.classList.add('next');
+                    if (window.innerWidth <= 768) {
+                        sliderContainer.style.minHeight = slide.offsetHeight + 'px';
+                    } else {
+                        sliderContainer.style.minHeight = '420px';
+                    }
                 }
             });
 
@@ -1159,52 +1823,46 @@
         function goToSlide(index) {
             currentSlide = index;
             updateSlider();
-            resetAutoSlide();
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            updateSlider();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            updateSlider();
         }
 
         prevBtn.addEventListener('click', () => {
-            prevSlide();
-            resetAutoSlide();
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
         });
 
         nextBtn.addEventListener('click', () => {
-            nextSlide();
-            resetAutoSlide();
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
         });
 
-        slides.forEach((slide) => {
-            slide.addEventListener('click', () => {
-                if (slide.classList.contains('prev')) {
-                    prevSlide();
-                    resetAutoSlide();
-                } else if (slide.classList.contains('next')) {
-                    nextSlide();
-                    resetAutoSlide();
-                }
-            });
-        });
+        // TOUCH SWIPE FOR MOBILE
+        let touchStartX = 0;
+        let touchEndX = 0;
 
-        function startAutoSlide() {
-            autoSlideTimer = setInterval(nextSlide, 5000);
+        sliderContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        sliderContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleGesture();
+        }, {passive: true});
+
+        function handleGesture() {
+            if (touchEndX < touchStartX - 40) {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlider();
+            }
+            if (touchEndX > touchStartX + 40) {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateSlider();
+            }
         }
 
-        function resetAutoSlide() {
-            clearInterval(autoSlideTimer);
-            startAutoSlide();
-        }
-
+        window.addEventListener('resize', updateSlider);
+        window.addEventListener('load', updateSlider);
         updateSlider();
-        startAutoSlide();
     </script>
 </body>
+
 </html>

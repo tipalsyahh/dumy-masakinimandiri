@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hubungi Kami & Tim - PT Masa Kini Mandiri (Lampung Post)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" sizes="192x192" href="https://lampost.co/otomatisasi-ai/img/icon.png" type="image/png">
     <style>
         :root {
-            --bg-dark: #0b0f19;
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --border-card: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary-accent: #3b82f6;
-            --secondary-accent: #06b6d4;
-            --brand-red: #ef4444;
-            --glow-color1: rgba(37, 99, 235, 0.25);
-            --glow-color2: rgba(14, 165, 233, 0.2);
-            --glow-color3: rgba(99, 102, 241, 0.15);
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border-card: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary-accent: #DC0000;
+            --primary-hover: #b30000;
+            --brand-red: #DC0000;
+            --navy-deep: #0f2b48;
+            --shadow-subtle: 0 10px 30px rgba(15, 23, 42, 0.05);
+            --shadow-hover: 0 20px 40px rgba(220, 0, 0, 0.12);
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -29,10 +34,13 @@
             scroll-behavior: smooth;
         }
 
+        html,
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            width: 100%;
+            max-width: 100%;
             overflow-x: hidden;
+            background-color: var(--bg-main);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
@@ -49,55 +57,79 @@
             height: 100vh;
             z-index: -1;
             overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #0d1322 0%, #060911 100%);
+            background: #f8fafc;
         }
 
-        .gradient-orb {
+        .background-gradient::before {
+            content: '';
             position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.6;
-            animation: floatOrb 20s infinite alternate ease-in-out;
+            inset: 0;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.35;
         }
 
-        .orb-1 { width: 500px; height: 500px; background: var(--glow-color1); top: -10%; left: -10%; }
-        .orb-2 { width: 600px; height: 600px; background: var(--glow-color2); bottom: -10%; right: -10%; animation-delay: -5s; }
-        .orb-3 { width: 450px; height: 450px; background: var(--glow-color3); top: 40%; left: 30%; animation-delay: -10s; }
-
-        @keyframes floatOrb {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(60px, 80px) scale(1.1); }
-            100% { transform: translate(-40px, -60px) scale(0.9); }
+        /* STYLES FOR SVG ICONS */
+        .svg-icon {
+            width: 1.2em;
+            height: 1.2em;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: -0.125em;
         }
 
+        .svg-icon-lg {
+            width: 2rem;
+            height: 2rem;
+            fill: currentColor;
+        }
+
+        /* NAVBAR HEADER FIXED - TRANSPARAN DI ATAS & BERUBAH BACKGROUND SAAT DI-SCROLL */
         navbar {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 8%;
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-card);
+            padding: 22px 8%;
+            background: transparent;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            border-bottom: 1px solid transparent;
+            box-shadow: none;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+        }
+
+        navbar.scrolled {
+            padding: 12px 8%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-card);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .logo {
             font-weight: 800;
             font-size: 1.3rem;
-            color: #fff;
+            color: var(--navy-deep);
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
             text-decoration: none;
         }
 
-        .logo span { color: var(--brand-red); }
+        .img-header {
+            width: 200px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
         .nav-links {
             display: flex;
@@ -107,58 +139,59 @@
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--navy-deep);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: 0.3s;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-main);
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-accent);
         }
 
         .menu-toggle {
             display: none;
-            font-size: 1.5rem;
-            color: #fff;
             cursor: pointer;
             z-index: 1001;
+            padding: 5px;
+            color: var(--navy-deep);
         }
 
+        /* --- HERO CONTACT --- */
         .contact-hero {
             position: relative;
             text-align: center;
-            padding: 150px 8% 40px;
+            padding: 140px 8% 40px;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 20px;
+            padding: 6px 18px;
             border-radius: 50px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            color: #60a5fa;
+            background: rgba(220, 0, 0, 0.08);
+            border: 1px solid rgba(220, 0, 0, 0.2);
+            color: var(--brand-red);
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .contact-hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 15px;
-            background: linear-gradient(135deg, #ffffff 20%, #a5f3fc 60%, #60a5fa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--navy-deep);
         }
 
         .contact-hero p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             max-width: 750px;
             margin: 0 auto;
@@ -170,12 +203,11 @@
         }
 
         .section-header h2 {
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--navy-deep);
             margin-bottom: 10px;
+            letter-spacing: -0.5px;
         }
 
         .section-header p {
@@ -183,28 +215,26 @@
             font-size: 1rem;
         }
 
+        /* --- CARDS STYLE --- */
         .glass-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: #ffffff;
             border: 1px solid var(--border-card);
-            border-radius: 24px;
-            padding: 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 30px 25px;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-subtle);
         }
 
         .glass-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-                        0 0 20px rgba(59, 130, 246, 0.15);
+            border-color: var(--brand-red);
+            box-shadow: var(--shadow-hover);
         }
 
         .top-info-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto 70px;
         }
 
@@ -213,26 +243,32 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            border-radius: 10px;
         }
 
         .info-icon-box {
-            width: 58px;
-            height: 58px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(6, 182, 212, 0.15));
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(220, 0, 0, 0.08);
+            border: 1px solid rgba(220, 0, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-            color: #38bdf8;
+            color: var(--brand-red);
             margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .glass-card:hover .info-icon-box {
+            background: var(--brand-red);
+            color: #ffffff;
         }
 
         .info-card h3 {
             font-size: 1.2rem;
-            font-weight: 700;
-            color: #fff;
+            font-weight: 800;
+            color: var(--navy-deep);
             margin-bottom: 10px;
         }
 
@@ -242,6 +278,7 @@
             line-height: 1.5;
         }
 
+        /* --- TEAM GRID --- */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -250,12 +287,10 @@
             margin: 0 auto 60px;
         }
 
-        /* Class untuk menengahkan Shieara A di grid 3 kolom */
         .card-center {
             grid-column: 2 / 3;
         }
 
-        /* Flexbox khusus untuk tim 2 card agar persis di tengah */
         .team-grid-2 {
             display: flex;
             justify-content: center;
@@ -275,6 +310,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            border-radius: 10px;
         }
 
         .team-avatar {
@@ -283,9 +319,9 @@
             border-radius: 50%;
             overflow: hidden;
             margin-bottom: 15px;
-            border: 2px solid rgba(59, 130, 246, 0.4);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            background: #1e293b;
+            border: 2px solid rgba(220, 0, 0, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+            background: #f1f5f9;
         }
 
         .team-avatar img {
@@ -296,15 +332,18 @@
 
         .team-name {
             font-size: 1.15rem;
-            font-weight: 700;
-            color: #fff;
+            font-weight: 800;
+            color: var(--navy-deep);
             margin-bottom: 4px;
         }
 
         .team-role {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--brand-red);
+            font-weight: 700;
             margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .team-socials {
@@ -314,40 +353,40 @@
         }
 
         .team-socials a {
-            width: 32px;
-            height: 32px;
+            width: 29px;
+            height: 29px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.06);
+            background: #ffffff;
             border: 1px solid var(--border-card);
-            color: var(--text-muted);
+            color: var(--navy-deep);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.82rem;
             text-decoration: none;
             transition: all 0.3s ease;
         }
 
         .team-socials a:hover {
-            background: var(--primary-accent);
-            color: #fff;
-            border-color: var(--primary-accent);
+            background: var(--brand-red);
+            color: #ffffff;
+            border-color: var(--brand-red);
             transform: translateY(-2px);
         }
 
+        /* --- FORM & MAPS SECTION --- */
         .contact-form-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto 80px;
-            align-items: start;
+            align-items: stretch;
         }
 
         .form-card h3 {
             font-size: 1.8rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--navy-deep);
             margin-bottom: 20px;
         }
 
@@ -358,8 +397,8 @@
         .form-group label {
             display: block;
             font-size: 0.9rem;
-            font-weight: 600;
-            color: #cbd5e1;
+            font-weight: 700;
+            color: var(--navy-deep);
             margin-bottom: 8px;
         }
 
@@ -370,19 +409,19 @@
         .form-control {
             width: 100%;
             padding: 12px 18px;
-            background: rgba(15, 23, 42, 0.6);
+            background: #f8fafc;
             border: 1px solid var(--border-card);
-            border-radius: 12px;
-            color: #fff;
+            border-radius: 0 !important;
+            color: var(--text-main);
             font-size: 0.95rem;
             outline: none;
             transition: all 0.3s ease;
         }
 
         .form-control:focus {
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
-            background: rgba(15, 23, 42, 0.9);
+            border-color: var(--brand-red);
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(220, 0, 0, 0.1);
         }
 
         textarea.form-control {
@@ -391,15 +430,17 @@
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
-            color: #fff;
+            background: var(--brand-red);
+            color: #ffffff;
             border: none;
             padding: 14px 32px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 700;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 20px rgba(220, 0, 0, 0.25);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -407,30 +448,33 @@
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.6);
+            background: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(220, 0, 0, 0.35);
         }
 
         .maps-card {
-            border-radius: 24px;
+            border-radius: 0 !important;
             overflow: hidden;
             height: 100%;
             min-height: 480px;
             border: 1px solid var(--border-card);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-subtle);
         }
 
         .maps-card iframe {
             width: 100%;
             height: 100%;
             border: 0;
-            filter: grayscale(20%) invert(90%) hue-rotate(180deg);
         }
 
+        /* --- FOOTER --- */
         footer {
-            background: rgba(6, 9, 17, 0.9);
+            background: #ffffff;
             border-top: 1px solid var(--border-card);
             padding: 60px 8% 30px;
+            margin-top: 60px;
+            width: 100%;
         }
 
         .footer-grid {
@@ -440,27 +484,59 @@
             margin-bottom: 40px;
         }
 
-        .footer-info h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .footer-info p { color: var(--text-muted); max-width: 400px; font-size: 0.95rem; }
+        .footer-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--navy-deep);
+        }
 
-        .footer-links h4 { font-size: 1.05rem; margin-bottom: 18px; color: #fff; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 10px; font-size: 0.9rem; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
-        .footer-links a:hover { color: var(--primary-accent); }
+        .footer-info p {
+            color: var(--text-muted);
+            max-width: 400px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            color: var(--navy-deep);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-red);
+        }
 
         .footer-bottom {
             text-align: center;
             padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--border-card);
             color: var(--text-muted);
             font-size: 0.85rem;
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
 
         .reveal.active {
@@ -468,67 +544,146 @@
             transform: translateY(0);
         }
 
-        @media (max-width: 1024px) {
-            .top-info-grid { grid-template-columns: repeat(2, 1fr); }
-            .contact-form-section { grid-template-columns: 1fr; }
-            .maps-card { min-height: 350px; }
+        /* --- RESPONSIVE MOBILE --- */
+        @media screen and (max-width: 1024px) {
+            .top-info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-form-section {
+                grid-template-columns: 1fr;
+            }
+
+            .maps-card {
+                min-height: 350px;
+            }
         }
 
-        @media (max-width: 868px) {
-            .menu-toggle { display: block; }
+        @media screen and (max-width: 768px) {
+            navbar {
+                padding: 15px 20px;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border-bottom: 1px solid transparent !important;
+                box-shadow: none !important;
+            }
+
+            navbar.scrolled {
+                padding: 12px 20px;
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(12px) !important;
+                -webkit-backdrop-filter: blur(12px) !important;
+                border-bottom: 1px solid var(--border-card) !important;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+            }
+
+            .img-header {
+                width: 140px;
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 38px;
+                height: 38px;
+                background: transparent;
+                border: none;
+                color: var(--navy-deep) !important;
+            }
+
             .nav-links {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 75%;
-                max-width: 300px;
+                width: 80%;
+                max-width: 320px;
                 height: 100vh;
-                background: rgba(11, 15, 25, 0.98);
-                backdrop-filter: blur(20px);
+                background: #ffffff;
                 flex-direction: column;
-                justify-content: center;
-                gap: 20px;
-                padding: 40px 20px;
-                transition: 0.4s ease-in-out;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 0;
+                padding: 90px 24px 30px;
+                transition: all 0.4s ease;
                 border-left: 1px solid var(--border-card);
-                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
             }
-            .nav-links.active { right: 0; }
 
-            .contact-hero h1 { font-size: 2.3rem; }
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
-            .card-center { grid-column: auto; }
-            .team-grid-2 .team-card { width: 100%; }
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid var(--border-card);
+            }
+
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 16px 8px;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--navy-deep);
+            }
+
+            .contact-hero {
+                padding: 110px 5% 30px;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card-center {
+                grid-column: auto;
+            }
+
+            .team-grid-2 .team-card {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
 
-        @media (max-width: 580px) {
-            .top-info-grid { grid-template-columns: 1fr; }
-            .team-grid { grid-template-columns: 1fr; }
-            .contact-hero h1 { font-size: 1.8rem; }
+        @media screen and (max-width: 580px) {
+            .top-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="background-gradient">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
-    </div>
+    <div class="background-gradient"></div>
 
-    <navbar>
+    <navbar id="mainNavbar">
         <a href="index.html" class="logo">
-            PT MASA KINI MANDIRI <span>.</span>
+            <img src="asset/epaper.webp" alt="Lampung Post" class="img-header">
         </a>
         <div class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars" id="menuIcon"></i>
+            <!-- HAMBURGER SVG -->
+            <svg id="menuIcon" class="svg-icon-lg" viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+            </svg>
         </div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Beranda</a></li>
             <li><a href="tentang.html">Tentang Kami</a></li>
             <li><a href="video.html">Video</a></li>
-            <li><a href="mitra.html">mitra</a></li>
+            <li><a href="mitra.html">Mitra</a></li>
             <li><a href="hubungi-kami.html" class="active">Hubungi</a></li>
             <li><a href="media-kami.html">Media Kami</a></li>
         </ul>
@@ -536,7 +691,9 @@
 
     <section class="contact-hero reveal" id="kontak">
         <div class="hero-badge">
-            <i class="fa-solid fa-headset"></i> Layanan Informasi & Kontak
+            <svg class="svg-icon" viewBox="0 0 24 24">
+                <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z" />
+            </svg> Layanan Informasi & Kontak
         </div>
         <h1>Hubungi Kami</h1>
         <p>Silakan hubungi tim profesional kami untuk kebutuhan iklan, kerja sama media, sirkulasi, atau pertanyaan umum terkait PT Masa Kini Mandiri (Lampung Post).</p>
@@ -546,7 +703,9 @@
         <div class="top-info-grid reveal">
             <div class="glass-card info-card">
                 <div class="info-icon-box">
-                    <i class="fa-solid fa-location-dot"></i>
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
                 </div>
                 <h3>Lokasi</h3>
                 <p>Jalan Soekarno – Hatta No. 108<br>Rajabasa, Bandar Lampung,<br>Lampung 35142</p>
@@ -554,17 +713,21 @@
 
             <div class="glass-card info-card">
                 <div class="info-icon-box">
-                    <i class="fa-solid fa-envelope"></i>
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                    </svg>
                 </div>
                 <h3>E - Mail</h3>
                 <p style="margin-top: 10px;">
-                    <a href="mailto:marcomm@lampost.co" style="color: #38bdf8; text-decoration: none; font-weight: 600;">marcomm@lampost.co</a>
+                    <a href="mailto:marcomm@lampost.co" style="color: var(--brand-red); text-decoration: none; font-weight: 700;">marcomm@lampost.co</a>
                 </p>
             </div>
 
             <div class="glass-card info-card">
                 <div class="info-icon-box">
-                    <i class="fa-solid fa-phone"></i>
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                    </svg>
                 </div>
                 <h3>Telepon</h3>
                 <p>
@@ -575,7 +738,9 @@
 
             <div class="glass-card info-card">
                 <div class="info-icon-box">
-                    <i class="fa-solid fa-clock"></i>
+                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                    </svg>
                 </div>
                 <h3>Jam Kerja</h3>
                 <p style="margin-top: 10px;">
@@ -587,99 +752,99 @@
 
         <div class="section-header reveal">
             <h2>Meet The Team</h2>
-            <p style="color: #60a5fa; font-weight: 700; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">Sales & Marketing</p>
+            <p style="color: var(--brand-red); font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Sales & Marketing</p>
         </div>
 
         <div class="team-grid reveal">
             <div class="glass-card team-card">
                 <div class="team-avatar">
-                    <img src="asset/ae/bucici.webp" alt="Sri Agustina" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Sri+A'">
+                    <img src="asset/ae/bucici.webp" alt="Sri Agustina" onerror="this.src='https://via.placeholder.com/110/f1f5f9/64748b?text=Sri+A'">
                 </div>
                 <div class="team-name">Sri Agustina</div>
                 <div class="team-role">Kadept Revenue</div>
                 <div class="team-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg></a>
+                    <a href="#" title="Twitter"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Instagram"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                 </div>
             </div>
 
             <div class="glass-card team-card">
                 <div class="team-avatar">
-                    <img src="asset/ae/dad.webp" alt="Dat. S. Ginting" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Ginting'">
+                    <img src="asset/ae/dad.webp" alt="Dat. S. Ginting" onerror="this.src='https://via.placeholder.com/110/f1f5f9/64748b?text=Ginting'">
                 </div>
                 <div class="team-name">Dat. S. Ginting</div>
                 <div class="team-role">Manajer Iklan</div>
                 <div class="team-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg></a>
+                    <a href="#" title="Twitter"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Instagram"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                 </div>
             </div>
 
             <div class="glass-card team-card">
                 <div class="team-avatar">
-                    <img src="asset/ae/aji.webp" alt="Setiaji B. Pamungkas" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Setiaji'">
+                    <img src="asset/ae/aji.webp" alt="Setiaji B. Pamungkas" onerror="this.src='https://via.placeholder.com/110/f1f5f9/64748b?text=Setiaji'">
                 </div>
                 <div class="team-name">Setiaji B. Pamungkas</div>
                 <div class="team-role">Manajer Iklan Digital</div>
                 <div class="team-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg></a>
+                    <a href="#" title="Twitter"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Instagram"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                 </div>
             </div>
 
             <div class="glass-card team-card">
                 <div class="team-avatar">
-                    <img src="asset/ae/merry.webp" alt="Merry Destaria" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Merry'">
+                    <img src="asset/ae/merry.webp" alt="Merry Destaria" onerror="this.src='https://via.placeholder.com/110/f1f5f9/64748b?text=Merry'">
                 </div>
                 <div class="team-name">Merry Destaria</div>
                 <div class="team-role">Account Executive</div>
                 <div class="team-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg></a>
+                    <a href="#" title="Twitter"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Instagram"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                 </div>
             </div>
 
             <div class="glass-card team-card">
                 <div class="team-avatar">
-                    <img src="asset/ae/repi.jpeg" alt="Repi Kusumaningrum" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Repi'">
+                    <img src="asset/ae/repi.jpeg" alt="Repi Kusumaningrum" onerror="this.src='https://via.placeholder.com/110/f1f5f9/64748b?text=Repi'">
                 </div>
                 <div class="team-name">Repi Kusumaningrum</div>
                 <div class="team-role">Account Executive</div>
                 <div class="team-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg></a>
+                    <a href="#" title="Twitter"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Instagram"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                 </div>
             </div>
 
             <div class="glass-card team-card">
                 <div class="team-avatar">
-                    <img src="asset/ae/anggun.webp" alt="Anggun" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Anggun'">
+                    <img src="asset/ae/anggun.webp" alt="Anggun" onerror="this.src='https://via.placeholder.com/110/f1f5f9/64748b?text=Anggun'">
                 </div>
                 <div class="team-name">Anggun</div>
                 <div class="team-role">Account Executive</div>
                 <div class="team-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg></a>
+                    <a href="#" title="Twitter"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Instagram"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                 </div>
             </div>
 
             <!-- Shieara A dipindahkan tepat ke tengah baris ke-3 -->
             <div class="glass-card team-card card-center">
                 <div class="team-avatar">
-                    <img src="asset/ae/buser.webp" alt="Shieara A" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Shieara'">
+                    <img src="asset/ae/buser.webp" alt="Shieara A" onerror="this.src='https://via.placeholder.com/110/f1f5f9/64748b?text=Shieara'">
                 </div>
                 <div class="team-name">Shieara A</div>
                 <div class="team-role">Account Executive</div>
                 <div class="team-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg></a>
+                    <a href="#" title="Twitter"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Instagram"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                 </div>
             </div>
         </div>
@@ -693,27 +858,27 @@
         <div class="team-grid-2 reveal">
             <div class="glass-card team-card">
                 <div class="team-avatar">
-                    <img src="asset/ae/wiji.webp" alt="Wiji Sukamto" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Wiji'">
+                    <img src="asset/ae/wiji.webp" alt="Wiji Sukamto" onerror="this.src='https://via.placeholder.com/110/f1f5f9/64748b?text=Wiji'">
                 </div>
                 <div class="team-name">Wiji Sukamto</div>
                 <div class="team-role">Manajer Aktivasi</div>
                 <div class="team-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg></a>
+                    <a href="#" title="Twitter"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Instagram"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                 </div>
             </div>
 
             <div class="glass-card team-card">
                 <div class="team-avatar">
-                    <img src="asset/ae/sodiq.webp" alt="Ja'far Sodiq" onerror="this.src='https://via.placeholder.com/110/1e293b/94a3b8?text=Jafar'">
+                    <img src="asset/ae/sodiq.webp" alt="Ja'far Sodiq" onerror="this.src='https://via.placeholder.com/110/f1f5f9/64748b?text=Jafar'">
                 </div>
                 <div class="team-name">Ja'far Sodiq</div>
                 <div class="team-role">Supervisor Sirkulasi</div>
                 <div class="team-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg></a>
+                    <a href="#" title="Twitter"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" title="Instagram"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
                 </div>
             </div>
         </div>
@@ -740,13 +905,13 @@
                         <textarea id="formPesan" class="form-control" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
                     </div>
                     <button type="submit" class="submit-btn">
-                        <i class="fa-solid fa-envelope-open-text"></i> Send to Email
+                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Send to Email
                     </button>
                 </form>
             </div>
 
             <div class="maps-card">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.391207902409!2d105.231922314765!3d-5.357121696113941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40cabb29a43585%3A0x6b749626354bbf89!2sLampung%20Post!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://maps.google.com/maps?q=Lampung+Post,+Jl.+Soekarno+-+Hatta+No.108,+Hajimena&t=&z=17&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
@@ -760,9 +925,9 @@
             <div class="footer-links">
                 <h4>Kontak Kami</h4>
                 <ul>
-                    <li><i class="fa-solid fa-envelope"></i> marcomm@lampost.co</li>
-                    <li><i class="fa-solid fa-phone"></i> T. 0721 783693 / F. 0721 773888</li>
-                    <li><i class="fa-solid fa-location-dot"></i> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> marcomm@lampost.co</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> T. 0721 783693 / F. 0721 773888</li>
+                    <li><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Jalan Soekarno - Hatta No. 108, Rajabasa, Bandar Lampung 35142</li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -781,6 +946,20 @@
     </footer>
 
     <script>
+        const mainNavbar = document.getElementById('mainNavbar');
+
+        // FUNGSI CEK SCROLL UNTUK EFEK NAVBAR TRANSPARAN -> BACKGROUND PUTIH
+        function checkScroll() {
+            if (window.scrollY > 30) {
+                mainNavbar.classList.add('scrolled');
+            } else {
+                mainNavbar.classList.remove('scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
         function sendToEmail(e) {
             e.preventDefault();
             const nama = document.getElementById('formNama').value;
@@ -810,22 +989,22 @@
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             if (navLinks.classList.contains('active')) {
-                menuIcon.className = 'fa-solid fa-times';
+                // ICON CLOSE (X)
+                menuIcon.innerHTML = '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>';
             } else {
-                menuIcon.className = 'fa-solid fa-bars';
+                // ICON HAMBURGER
+                menuIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
             }
         });
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                if (menuIcon) {
-                    menuIcon.className = 'fa-solid fa-bars';
-                }
+                menuIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
             });
         });
 
-        const observerOptions = { threshold: 0.12 };
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -835,21 +1014,6 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        document.querySelectorAll('.glass-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                if (window.innerWidth > 768) {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    card.style.transform = `translateY(-8px) rotateX(${-y / 35}deg) rotateY(${x / 35}deg)`;
-                }
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `translateY(0) rotateX(0deg) rotateY(0deg)`;
-            });
-        });
     </script>
 </body>
 </html>
