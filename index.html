@@ -211,17 +211,33 @@
             z-index: 1;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            filter: brightness(0.95) contrast(1.05);
+            filter: none;
         }
 
         .hero-overlay {
+            display: none;
+        }
+
+        /* WRAPPER EFEK AWAN / KABUT DI BAGIAN BAWAH HERO (DESKTOP) */
+        .hero-clouds-wrapper {
             position: absolute;
-            top: 0;
+            bottom: -1px;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 160px;
             z-index: 2;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(248, 250, 252, 0.6) 70%, #f8fafc 100%);
+            pointer-events: none;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .hero-clouds-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: bottom;
+            filter: drop-shadow(0px -5px 10px rgba(255, 255, 255, 0.5));
         }
 
         .hero-content {
@@ -250,13 +266,16 @@
             line-height: 1.15;
             margin-bottom: 25px;
             color: var(--navy-deep);
+            text-shadow: 0 2px 12px rgba(255, 255, 255, 0.95), 0 0 25px rgba(255, 255, 255, 0.8);
         }
 
         .hero p {
             font-size: 1.15rem;
-            color: var(--text-muted);
+            color: #0f172a;
+            font-weight: 600;
             max-width: 750px;
             margin: 0 auto 30px;
+            text-shadow: 0 1px 10px rgba(255, 255, 255, 0.95);
         }
 
         /* SOSMED ICONS IN HERO & CARDS */
@@ -384,7 +403,7 @@
         .lift-card {
             background: #ffffff;
             border: 1px solid var(--border-card);
-            border-radius: 0 !important;
+            border-radius: 20px;
             padding: 35px 25px;
             text-align: center;
             display: flex;
@@ -460,7 +479,7 @@
         .profile-card {
             background: #ffffff;
             border: 1px solid var(--border-card);
-            border-radius: 0 !important;
+            border-radius: 20px;
             padding: 35px 25px;
             text-align: center;
             display: flex;
@@ -846,7 +865,7 @@
         .ig-card {
             background: #ffffff;
             border: 1px solid var(--border-card);
-            border-radius: 0 !important;
+            border-radius: 20px;
             padding: 24px 20px;
             text-align: center;
             display: flex;
@@ -982,7 +1001,7 @@
                 display: block;
             }
 
-            .hero-overlay {
+            .hero-clouds-wrapper {
                 display: none;
             }
 
@@ -1012,6 +1031,7 @@
                 color: var(--navy-deep) !important;
                 margin-bottom: 25px;
                 line-height: 1.25;
+                text-shadow: none;
             }
 
             .hero p {
@@ -1176,15 +1196,13 @@
 
     <section id="beranda" class="hero reveal">
         <video autoplay loop muted playsinline class="hero-video-bg">
-            <source src="asset/vidio.mp4" type="video/mp4">
+            <source src="asset/tes.mp4" type="video/mp4">
         </video>
-
-        <div class="hero-overlay"></div>
 
         <div class="hero-content">
             <div class="hero-subtitle-mobile">SUARAKAN POTENSI INDONESIA</div>
             <h1>PT. Masa Kini Mandiri</h1>
-            <p>Memiliki penerbitan Surat Kabar Harian Umum Lampung Post, media ciber Lampost.co, media streaming Lampung Post Update, Publishing, Event Organizer, dan Lembaga Survei.</p>
+            <p>Bagian dari Media Group Network. Kami telah bertransformasi dari koran cetak menjadi institusi media multiplatform yang menjadi rujukan utama informasi di Sang Bumi Ruwa Jurai. Sejak 10 Agustus 1974.</p>
             <a href="tentang.html" class="hero-cta-btn">LEARN MORE ABOUT US <svg class="svg-icon" viewBox="0 0 24 24">
                     <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
                 </svg></a>
@@ -1407,10 +1425,7 @@
         <div class="profile-card-grid">
             <div class="profile-card reveal">
                 <div class="profile-avatar-box">
-                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-                    </svg>
+                    <img src="https://lampost.co/otomatisasi-ai/img/icon.png" alt="image" style="width: 100px;">
                 </div>
                 <div class="profile-title">Portal Berita Online</div>
                 <div class="profile-desc"><b>LAMPOST.CO</b> - Portal berita nomor satu di Provinsi Lampung menyajikan
@@ -1418,10 +1433,7 @@
             </div>
             <div class="profile-card reveal">
                 <div class="profile-avatar-box">
-                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm0-4h-2V7h2v5z" />
-                    </svg>
+                    <img src="asset/lampungpostupdate.webp" alt="image" style="width: 100px;">
                 </div>
                 <div class="profile-title">Broadcast</div>
                 <div class="profile-desc">Lampung Post Update (YouTube Channel) menyajikan berita visual dan tayangan
@@ -1429,10 +1441,7 @@
             </div>
             <div class="profile-card reveal">
                 <div class="profile-avatar-box">
-                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
-                        <path
-                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-                    </svg>
+                    <img src="asset/lampost.co.webp" alt="image" style="width: 100px;">
                 </div>
                 <div class="profile-title">Digital (E-Paper)</div>
                 <div class="profile-desc">Koran digital Lampung Post teruji & tepercaya yang praktis diakses dari mana
@@ -1440,20 +1449,14 @@
             </div>
             <div class="profile-card reveal">
                 <div class="profile-avatar-box">
-                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
-                        <path
-                            d="M3.24 6.15C2.51 6.43 2 7.17 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2H8.3l8.26-3.34L15.8 1 3.24 6.15zM12 18c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
-                    </svg>
+                    <img src="asset/sai.webp" alt="image" style="width: 100px;">
                 </div>
                 <div class="profile-title">Radio SAI 100FM</div>
                 <div class="profile-desc">Mengusung konsep anak muda kreatif, energik, dan musik pop/jazz pilihan.</div>
             </div>
             <div class="profile-card reveal">
                 <div class="profile-avatar-box">
-                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
-                        <path
-                            d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
-                    </svg>
+                    <img src="asset/publising.webp" alt="image" style="width: 100px;">
                 </div>
                 <div class="profile-title">Publishing</div>
                 <div class="profile-desc">Jasa cetak penerbitan koran, tabloid, buku melalui layanan One Stop
@@ -1461,10 +1464,7 @@
             </div>
             <div class="profile-card reveal">
                 <div class="profile-avatar-box">
-                    <svg class="svg-icon-lg" viewBox="0 0 24 24">
-                        <path
-                            d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
-                    </svg>
+                    <img src="asset/event.webp" alt="image" style="width: 100px;">
                 </div>
                 <div class="profile-title">Event Organizer</div>
                 <div class="profile-desc">Penyelenggara acara profesional untuk instansi pemerintah, BUMN, swasta, dan
