@@ -166,7 +166,7 @@
             align-items: center;
             gap: 8px;
             padding: 6px 18px;
-            border-radius: 10px; /* BORDER RADIUS 10PX */
+            border-radius: 10px;
             background: rgba(220, 0, 0, 0.08);
             border: 1px solid rgba(220, 0, 0, 0.2);
             color: var(--brand-red);
@@ -199,7 +199,7 @@
             position: relative;
             z-index: 1;
             max-width: 1280px;
-            margin: 0 auto 80px;
+            margin: 0 auto 60px;
             padding: 0 8%;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -209,7 +209,7 @@
         .bento-item {
             background: #ffffff;
             border: 1px solid var(--border-card);
-            border-radius: 10px !important; /* BORDER RADIUS 10PX */
+            border-radius: 10px !important;
             padding: 36px;
             position: relative;
             overflow: hidden;
@@ -243,7 +243,7 @@
             color: var(--brand-red);
             background: rgba(220, 0, 0, 0.08);
             padding: 6px 14px;
-            border-radius: 10px; /* BORDER RADIUS 10PX */
+            border-radius: 10px;
             border: 1px solid rgba(220, 0, 0, 0.15);
         }
 
@@ -295,7 +295,7 @@
         .action-arrow-btn {
             width: 44px;
             height: 44px;
-            border-radius: 10px; /* BORDER RADIUS 10PX */
+            border-radius: 10px;
             background: #f1f5f9;
             border: 1px solid var(--border-card);
             color: var(--navy-deep);
@@ -310,6 +310,191 @@
             color: #ffffff;
             border-color: var(--brand-red);
             transform: rotate(-45deg);
+        }
+
+        /* --- OFFICIAL INSTAGRAM SMOOTH CAROUSEL --- */
+        .ig-carousel-section {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto 80px;
+            padding: 0 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+            font-weight: 800;
+            color: var(--navy-deep);
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .ig-slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            border-radius: 10px;
+            padding: 15px 0;
+        }
+
+        .ig-carousel-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .ig-slide-item {
+            width: 270px;
+            flex-shrink: 0;
+        }
+
+        .ig-card {
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            border-radius: 10px !important;
+            padding: 28px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-subtle);
+            text-decoration: none;
+        }
+
+        .ig-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--brand-red);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .ig-avatar {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 16px;
+            border: 2px solid var(--border-card);
+            padding: 2px;
+            background: #ffffff;
+            transition: 0.3s;
+        }
+
+        .ig-card:hover .ig-avatar {
+            border-color: var(--brand-red);
+        }
+
+        .ig-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .ig-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--navy-deep);
+            margin-bottom: 4px;
+            word-break: break-word;
+        }
+
+        .ig-handle {
+            font-size: 0.82rem;
+            color: var(--brand-red);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .ig-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .ig-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(220, 0, 0, 0.08);
+            color: var(--brand-red);
+            padding: 8px 18px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .ig-card:hover .ig-btn {
+            background: var(--brand-red);
+            color: #ffffff;
+        }
+
+        .ig-carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 25px;
+        }
+
+        .ig-control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            color: var(--navy-deep);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .ig-control-btn:hover {
+            background: var(--brand-red);
+            color: #ffffff;
+            border-color: var(--brand-red);
+        }
+
+        .ig-dots-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ig-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ig-dot.active {
+            width: 24px;
+            border-radius: 10px;
+            background: var(--brand-red);
         }
 
         /* MODAL BOX LIGHT DESIGN */
@@ -337,7 +522,7 @@
         .modal-card {
             background: #ffffff;
             border: 1px solid var(--border-card);
-            border-radius: 10px !important; /* BORDER RADIUS 10PX */
+            border-radius: 10px !important;
             width: 100%;
             max-width: 650px;
             padding: 40px;
@@ -351,7 +536,7 @@
             right: 24px;
             width: 38px;
             height: 38px;
-            border-radius: 10px; /* BORDER RADIUS 10PX */
+            border-radius: 10px;
             background: #f1f5f9;
             border: 1px solid var(--border-card);
             color: var(--navy-deep);
@@ -391,7 +576,7 @@
             background: var(--brand-red);
             color: #ffffff;
             padding: 12px 28px;
-            border-radius: 10px; /* BORDER RADIUS 10PX */
+            border-radius: 10px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -407,14 +592,13 @@
             box-shadow: 0 12px 25px rgba(220, 0, 0, 0.35);
         }
 
-        /* ANIMASI LOAD HALAMAN (LOAD ANIMATION) */
+        /* ANIMASI LOAD HALAMAN */
         .animate-fade-up {
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* DELAY ANIMASI BERTAHAP SAAT TAMPIL */
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.25s; }
         .delay-3 { animation-delay: 0.4s; }
@@ -501,7 +685,6 @@
             font-size: 0.85rem;
         }
 
-        /* MOBILE RESPONSIVE */
         @media screen and (max-width: 900px) {
             .media-bento-container {
                 grid-template-columns: 1fr;
@@ -587,6 +770,10 @@
             .bento-item {
                 padding: 24px;
                 min-height: auto;
+            }
+
+            .ig-carousel-section {
+                padding: 0 5%;
             }
 
             .footer-grid {
@@ -686,7 +873,7 @@
                 <div class="brand-header">
                     <span class="brand-badge">Multimedia</span>
                 </div>
-                <h2 class="bento-title">Suma.id Multimedia Network</h2>
+                <h2 class="bento-title">Suma.id</h2>
                 <p class="bento-description">Jejaring platform media multimedia interaktif yang memadukan elemen teks berita, foto jurnalistik, siaran podcast audio, dan video grafis dalam satu ruang baca yang dinamis.</p>
             </div>
             <div class="bento-meta-bar">
@@ -725,6 +912,109 @@
         </article>
 
     </main>
+
+    <!-- OFFICIAL INSTAGRAM NETWORK CAROUSEL SECTION -->
+    <section class="ig-carousel-section animate-fade-up delay-5">
+        <div class="section-header">
+            <h2>Official Instagram Network</h2>
+            <p>Ikuti akun-akun resmi Lampung Post Group untuk mendapatkan berita dan konten terbaru langsung di feed Anda.</p>
+        </div>
+
+        <div class="ig-slider-wrapper" id="igSliderWrapper">
+            <div class="ig-carousel-track" id="igCarouselTrack">
+                <!-- CARD 1 -->
+                <div class="ig-slide-item">
+                    <a href="https://www.instagram.com/lampungpostupdate/" target="_blank" class="ig-card">
+                        <div class="ig-avatar">
+                            <img src="asset/logo-ig/lampungpostupdate.jpg" alt="lampungpostupdate">
+                        </div>
+                        <div>
+                            <div class="ig-name">lampungpostupdate</div>
+                            <div class="ig-handle">@lampungpostupdate</div>
+                            <p class="ig-desc">Part of Media Group Network.</p>
+                        </div>
+                        <div class="ig-btn">
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                            Follow
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="ig-slide-item">
+                    <a href="https://www.instagram.com/lampungpostotomotif/" target="_blank" class="ig-card">
+                        <div class="ig-avatar">
+                            <img src="asset/logo-ig/otomotif.jpg" alt="lampungpostotomotif">
+                        </div>
+                        <div>
+                            <div class="ig-name">lampungpostotomotif</div>
+                            <div class="ig-handle">@lampungpostotomotif</div>
+                            <p class="ig-desc">Official Otomotif Info Terlengkap Mobil, Motor & Komunitas.</p>
+                        </div>
+                        <div class="ig-btn">
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                            Follow
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="ig-slide-item">
+                    <a href="https://www.instagram.com/lampungpostlifestyle/" target="_blank" class="ig-card">
+                        <div class="ig-avatar">
+                            <img src="asset/logo-ig/lifestyle.jpg" alt="lampungpostlifestyle">
+                        </div>
+                        <div>
+                            <div class="ig-name">lampungpostlifestyle</div>
+                            <div class="ig-handle">@lampungpostlifestyle</div>
+                            <p class="ig-desc">Lampung Post Lifestyle Jelajah - Rasakan - Ceritakan.</p>
+                        </div>
+                        <div class="ig-btn">
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                            Follow
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="ig-slide-item">
+                    <a href="https://www.instagram.com/lampungpostproperty/" target="_blank" class="ig-card">
+                        <div class="ig-avatar">
+                            <img src="asset/logo-ig/property.jpg" alt="lampungpostproperty">
+                        </div>
+                        <div>
+                            <div class="ig-name">lampungpostproperty</div>
+                            <div class="ig-handle">@lampungpostproperty</div>
+                            <p class="ig-desc">Info Property Lampung.</p>
+                        </div>
+                        <div class="ig-btn">
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                            Follow
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVIGASI CONTROL -->
+        <div class="ig-carousel-controls">
+            <button class="ig-control-btn" id="igPrevBtn" aria-label="Sebelumnya">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+            </button>
+            <div class="ig-dots-container" id="igDotsContainer"></div>
+            <button class="ig-control-btn" id="igNextBtn" aria-label="Selanjutnya">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+            </button>
+        </div>
+    </section>
 
     <!-- Modal Detail View -->
     <div class="human-modal" id="humanModal">
@@ -772,7 +1062,6 @@
     <script>
         const mainNavbar = document.getElementById('mainNavbar');
 
-        // CEK SCROLL NAVBAR
         function checkScroll() {
             if (window.scrollY > 30) {
                 mainNavbar.classList.add('scrolled');
@@ -846,6 +1135,136 @@
                 }
             });
         }
+
+        /* --- SCRIPT OTOMATISASI INSTAGRAM INFINITE LOOP --- */
+        const track = document.getElementById('igCarouselTrack');
+        const wrapper = document.getElementById('igSliderWrapper');
+        const prevBtn = document.getElementById('igPrevBtn');
+        const nextBtn = document.getElementById('igNextBtn');
+        const dotsContainer = document.getElementById('igDotsContainer');
+
+        // DUPLIKASI CARD SECARA OTOMATIS SUPAYA CAROUSEL BISA BERJALAN DAN LOOPING BERSAMBUNG
+        const originalCards = Array.from(track.children);
+        originalCards.forEach(card => {
+            const clone = card.cloneNode(true);
+            track.appendChild(clone);
+        });
+
+        let currentIndex = 0;
+        let cardWidth = 290; // 270px width + 20px gap
+        let autoPlayTimer = null;
+        const totalItems = originalCards.length;
+
+        // BIKIN DOTS SESUAI JUMLAH CARD ASLI (4 DOTS)
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalItems; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('ig-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateSlider(animate = true) {
+            if (!animate) {
+                track.style.transition = 'none';
+            } else {
+                track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+            }
+            
+            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+            // UPDATE ACTIVE DOT
+            const dots = dotsContainer.querySelectorAll('.ig-dot');
+            const activeDotIndex = currentIndex % totalItems;
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === activeDotIndex);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex++;
+            updateSlider(true);
+
+            // LOGIKA SEAMLESS LOOP
+            if (currentIndex >= totalItems) {
+                setTimeout(() => {
+                    currentIndex = 0;
+                    updateSlider(false);
+                }, 400);
+            }
+        }
+
+        function prevSlide() {
+            if (currentIndex === 0) {
+                currentIndex = totalItems;
+                updateSlider(false);
+                setTimeout(() => {
+                    currentIndex--;
+                    updateSlider(true);
+                }, 20);
+            } else {
+                currentIndex--;
+                updateSlider(true);
+            }
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateSlider(true);
+            resetAutoPlay();
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            autoPlayTimer = setInterval(nextSlide, 2800);
+        }
+
+        function stopAutoPlay() {
+            if (autoPlayTimer) clearInterval(autoPlayTimer);
+        }
+
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+
+        // EVENT LISTENERS
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoPlay();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoPlay();
+        });
+
+        wrapper.addEventListener('mouseenter', stopAutoPlay);
+        wrapper.addEventListener('mouseleave', startAutoPlay);
+
+        // TOUCH SWIPE FOR MOBILE
+        let startX = 0;
+        wrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            stopAutoPlay();
+        }, { passive: true });
+
+        wrapper.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            if (startX - endX > 40) {
+                nextSlide();
+            } else if (endX - startX > 40) {
+                prevSlide();
+            }
+            startAutoPlay();
+        }, { passive: true });
+
+        // INIT
+        createDots();
+        startAutoPlay();
     </script>
 </body>
 
